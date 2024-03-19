@@ -3,24 +3,191 @@
   gap: 0.5em;
   align-items: center;
   margin: 2%;
+  color: #2e0052;
+  /* background-color: violet; */
+}
+
+.logo {
+  width: 4%;
+}
+
+.breadCrumb {
+  color: #000;
+}
+
+.banner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bannerContainer {
+  width: 80%;
+  margin: 0 2% 2% 2%;
+  position: relative;
+  /* border: 2px solid red; */
+}
+
+.bannerOverlay {
+  z-index: 1000;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+.bannerImage {
+  height: 10em;
+  /* border: 2px solid black; */
+  aspect-ratio: 1.5/1;
+  align-self: flex-end;
+}
+
+.bannerGradient {
+  z-index: 999;
+  background: linear-gradient(90deg, #7286b4 0%, #e794ce 100%);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  height: 80%;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.overlayAd {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  /* border: 2px solid red; */
+}
+
+.overlayAd > h1 {
+  margin-top: 2%;
+}
+
+.overlayAd > button {
+  display: none;
+  width: 30%;
+  color: white;
+  background-color: #2e0052;
+  border: none;
+  padding: 1% 3%;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1000px) {
+  .brandingContainer {
+    margin: 0 1%;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and down) */
 @media only screen and (max-width: 992px) {
+  .logo {
+    width: 7%;
+  }
+  .overlayAd > h1 {
+    margin-top: 6%;
+  }
+  .overlayAd {
+    gap: 10px;
+    margin-left: 2%;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and down) */
 @media only screen and (max-width: 768px) {
+  .brandingContainer {
+    display: none;
+  }
+  .bannerContainer {
+    width: 95%;
+  }
+  .logo {
+    width: 10%;
+  }
+  .overlayAd > h1 {
+    margin-top: 6%;
+  }
+  .overlayAd {
+    display: block;
+    gap: 10px;
+    margin-left: 2%;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+  .brandingContainer {
+    display: none;
+    margin: 2%;
+  }
+  .bannerContainer {
+    width: 95%;
+  }
+
+  .logo {
+    width: 12%;
+  }
+  .overlayAd > h1 {
+    font-size: 19px;
+    padding: 2%;
+    margin-top: 5%;
+  }
+  .bannerImage {
+    height: 7em;
+  }
+  .overlayAd {
+    margin-left: 1%;
+    gap: 1px;
+  }
+  .overlayAd > button {
+    display: block;
+    width: 50%;
+    padding: 2% 3%;
+    justify-self: end;
+  }
 }
 
-/* Extra small devices (phones, 600px and down) */
+/* Extra small devices (phones, 380px and down) */
 @media only screen and (max-width: 380px) {
+  .brandingContainer {
+    display: none;
+    margin: 1%;
+  }
+  .bannerContainer {
+    width: 100%;
+  }
+  .logo {
+    width: 10%;
+  }
+  .overlayAd > h1 {
+    font-size: 19px;
+    margin-top: 5%;
+  }
+  .bannerImage {
+    height: 6em;
+  }
+  .overlayAd {
+    margin-left: 1%;
+  }
+  .overlayAd > button {
+    display: block;
+    width: 50%;
+    padding: 2% 4%;
+  }
+}
+@media only screen and (max-width: 280px) {
+  .overlayAd > h1 {
+    font-size: 12px;
+  }
+  .overlayAd {
+    margin-top: 20px;
+  }
 }

@@ -1,0 +1,64 @@
+.SnScontainer {
+  display: flex;
+  flex-direction: column;
+}
+.searchBoxContainer {
+  width: 80%;
+  align-self: center;
+}
+.searchBox {
+  display: flex;
+  /* background-color: aquamarine; */
+  justify-content: center;
+  border: 3px solid #c8c8c8;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.searchBox > input {
+  flex-grow: 1;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  padding: 0 10px;
+}
+
+.searchBox > img {
+  margin-left: 10px;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1000px) {
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+  .searchBoxContainer {
+    display: none;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .searchBoxContainer {
+    display: none;
+  }
+}
+
+/* Extra small devices (phones, 380px and down) */
+@media only screen and (max-width: 380px) {
+  .searchBoxContainer {
+    display: none;
+  }
+}
+
+/* Extra small devices (phones, 280px and down) */
+@media only screen and (max-width: 280px) {
+  .searchBoxContainer {
+    display: none;
+  }
+}

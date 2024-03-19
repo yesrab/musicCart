@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import styles from "./HnF.module.css";
 import { useNavigation, useLocation, NavLink } from "react-router-dom";
 import home from "../../assets/home.svg";
