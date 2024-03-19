@@ -1,0 +1,106 @@
+.formContainer {
+  padding: 1%;
+  border: 2px solid #d0d0d0;
+  margin: 5% 35%;
+  border-radius: 8px;
+}
+
+.formHeadings {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 15px;
+  margin-bottom: 10px;
+}
+
+.formHeadings > h3 {
+  font-weight: 500;
+}
+
+.formHeadings > p {
+  font-weight: 300;
+}
+
+.question {
+  display: none;
+}
+
+.formElements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  font-weight: 500;
+  margin-top: 10px;
+}
+.formElements > input {
+  height: 2em;
+  padding: 1%;
+}
+
+.submitButton {
+  margin-top: 1em;
+  width: 100%;
+  font-weight: 500;
+  color: white;
+  background-color: #2e0052;
+  border: none;
+  padding: 2%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.TnC {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-weight: 400;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .formContainer {
+    margin: 2% 35%;
+    padding: 1%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+  .formContainer {
+    margin: 2% 30%;
+    padding: 4%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+  .question {
+    display: block;
+  }
+  .formContainer {
+    margin: 2% 20%;
+    padding: 4%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .question {
+    display: block;
+  }
+  .formContainer {
+    margin: 2% 5%;
+    padding: 4%;
+  }
+}
+
+/* Extra small devices (phones, 380px and down) */
+@media only screen and (max-width: 380px) {
+  .question {
+    display: block;
+  }
+  .formContainer {
+    padding: 5%;
+    margin: 5%;
+  }
+}
