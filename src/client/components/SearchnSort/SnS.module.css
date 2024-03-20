@@ -51,8 +51,8 @@
   gap: 1em;
   /* background-color: aqua; */
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  /* overflow-x: auto; */
+  /* overflow-y: hidden; */
 }
 
 .dropdownButtons {

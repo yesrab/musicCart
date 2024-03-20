@@ -1,0 +1,33 @@
+.dropDown {
+  position: relative;
+}
+
+.dropdownButtons {
+  display: flex;
+  align-items: center;
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 1em;
+  padding: 2px 5px;
+  cursor: pointer;
+  flex-wrap: nowrap;
+  text-wrap: nowrap;
+}
+
+.dropDownMenu {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 10px;
+  height: 100px;
+  width: 100px;
+  background-color: yellow;
+}
+.dropDownList {
+  list-style: none;
+  background-color: aqua;
+  text-align: center;
+}
+.dropDownList > li {
+  margin-top: 5px;
+}
