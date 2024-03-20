@@ -27,6 +27,46 @@
   margin-left: 10px;
 }
 
+.unfilled {
+  background-color: white;
+  border: none;
+  font-variation-settings: "FILL" 0, "wght" 100, "GRAD" 0, "opsz" 24;
+}
+
+.filled {
+  background-color: white;
+  border: none;
+  font-variation-settings: "FILL" 1, "wght" 100, "GRAD" 0, "opsz" 24;
+}
+
+.sortBox {
+  /* background-color: red; */
+  margin: 1% 0;
+  width: 100%;
+  padding: 0% 10%;
+}
+
+.sortOptionsContainer {
+  display: flex;
+  gap: 1em;
+  /* background-color: aqua; */
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.dropdownButtons {
+  display: flex;
+  align-items: center;
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 1em;
+  padding: 2px 5px;
+  cursor: pointer;
+  flex-wrap: nowrap;
+  text-wrap: nowrap;
+}
+
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1000px) {
 }
@@ -47,6 +87,17 @@
   .searchBoxContainer {
     display: none;
   }
+  .sortBox {
+    width: 100%;
+    margin: 1% 0;
+    padding: 0 5%;
+  }
+  .unfilled {
+    display: none;
+  }
+  .filled {
+    display: none;
+  }
 }
 
 /* Extra small devices (phones, 380px and down) */
@@ -54,11 +105,33 @@
   .searchBoxContainer {
     display: none;
   }
+  .sortBox {
+    width: 100%;
+    margin: 1% 0;
+    padding: 0 8%;
+  }
+  .unfilled {
+    display: none;
+  }
+  .filled {
+    display: none;
+  }
 }
 
 /* Extra small devices (phones, 280px and down) */
 @media only screen and (max-width: 280px) {
   .searchBoxContainer {
+    display: none;
+  }
+  .sortBox {
+    width: 100%;
+    margin: 1% 0;
+    padding: 0 8%;
+  }
+  .unfilled {
+    display: none;
+  }
+  .filled {
     display: none;
   }
 }
