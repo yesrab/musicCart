@@ -8,7 +8,6 @@
 }
 .searchBox {
   display: flex;
-  /* background-color: aquamarine; */
   justify-content: center;
   border: 3px solid #c8c8c8;
   border-radius: 20px;
@@ -40,19 +39,17 @@
 }
 
 .sortBox {
-  /* background-color: red; */
   margin: 1% 0;
   width: 100%;
   padding: 0% 10%;
+  overflow-y: clip;
+  overflow-x: auto;
 }
 
 .sortOptionsContainer {
   display: flex;
   gap: 1em;
-  /* background-color: aqua; */
   width: 100%;
-  /* overflow-x: auto; */
-  /* overflow-y: hidden; */
 }
 
 .dropdownButtons {
@@ -63,8 +60,13 @@
   border-radius: 1em;
   padding: 2px 5px;
   cursor: pointer;
-  flex-wrap: nowrap;
   text-wrap: nowrap;
+}
+
+.DropDownEnvolpe {
+  display: flex;
+  /* overflow-x: auto; */
+  /* position: relative; */
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

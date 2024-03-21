@@ -3,7 +3,7 @@ import styles from "./HnF.module.css";
 import callImage from "../../assets/phone.svg";
 import { Link, useNavigation } from "react-router-dom";
 import searchIcon from "../../assets/search.svg";
-function Header() {
+function Header({ searchProduct, setSearchProduct }) {
   return (
     <header className={styles.headerbar}>
       <div className={styles.desktopHeader}>
@@ -26,7 +26,14 @@ function Header() {
       </div>
       <div className={styles.searchBox}>
         <img className={styles.search} src={searchIcon} />
-        <input type='text' placeholder='Search Musicart' />
+        <input
+          value={searchProduct}
+          onChange={(e) => {
+            setSearchProduct(e.target.value);
+          }}
+          type='text'
+          placeholder='Search Musicart'
+        />
       </div>
     </header>
   );

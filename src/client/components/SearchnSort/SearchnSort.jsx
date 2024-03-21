@@ -4,7 +4,9 @@ import styles from "./SnS.module.css";
 import gridIcon from "../../assets/gridView.svg";
 import listIcon from "../../assets/listView.svg";
 import DropDown from "../DropDown/DropDown";
-function SearchnSort() {
+
+import { useFloating } from "@floating-ui/react";
+function SearchnSort({ searchProduct, setSearchProduct }) {
   const [gridView, setGridView] = useState(true);
   const setView = (view) => {
     if (view === "grid") {
@@ -13,17 +15,19 @@ function SearchnSort() {
       setGridView(false);
     }
   };
-
-  const [isOpen, setIsOpen] = useState(false);
-  const Options = ["option1", "option2", "option3"];
-  const [dropDownData, setDropDownData] = useState(Options);
-  const name = "lalo";
   return (
     <section className={styles.SnScontainer}>
       <div className={styles.searchBoxContainer}>
         <div className={styles.searchBox}>
           <img src={search} alt='search' />
-          <input type='text' placeholder='Search by Product Name' />
+          <input
+            value={searchProduct}
+            onChange={(e) => {
+              setSearchProduct(e.target.value);
+            }}
+            type='text'
+            placeholder='Search by Product Name'
+          />
         </div>
       </div>
       <div className={styles.sortBox}>
@@ -42,10 +46,19 @@ function SearchnSort() {
             className={`material-symbols-outlined ${gridView ? styles.unfilled : styles.filled} `}>
             view_list
           </button>
-          <DropDown name={"Headphone type"} />
-          <DropDown name={"Company"} />
-          <DropDown name={"Colour"} />
-          <DropDown name={"Price"} />
+          <DropDown
+            name={"Headphone type"}
+            options={["Featured", "In-ear headphone", "On-ear headphone", "Over-ear headphone"]}
+          />
+          <DropDown
+            name={"Company"}
+            options={["Featured", "Sony", "Apple", "Ptron", "Marshall", "Zebronics", "Boat", "JBL"]}
+          />
+          <DropDown name={"Colour"} options={["Featured", "Blue", "Black", "White", "Brown"]} />
+          <DropDown
+            name={"Price"}
+            options={["Featured", "₹0 - ₹1,000", "₹1,000 - ₹10,000", "₹10,000 - ₹20,000"]}
+          />
         </div>
       </div>
     </section>

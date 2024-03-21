@@ -1,14 +1,16 @@
 import React from "react";
-import Header from "../../components/header and footer/Header";
 import OfferBanner from "../../components/HomeHeader/OfferBanner";
 import styles from "./HomeStyles.module.css";
 import SearchnSort from "../../components/SearchnSort/SearchnSort";
-import DropDown from "../../components/DropDown/DropDown";
+import { useOutletContext } from "react-router-dom";
+
 function Home() {
+  const [searchProduct, setSearchProduct] = useOutletContext();
+
   return (
     <main className={styles.HomepageMain}>
       <OfferBanner />
-      <SearchnSort />
+      <SearchnSort searchProduct={searchProduct} setSearchProduct={setSearchProduct} />
       home page
     </main>
   );

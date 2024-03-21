@@ -1,28 +1,36 @@
 .dropDown {
   position: relative;
+
+  /* contain: layout; */
 }
 
 .dropdownButtons {
   display: flex;
   align-items: center;
+  justify-content: space-around;
   background-color: #d9d9d9;
   border: none;
   border-radius: 1em;
   padding: 2px 5px;
   cursor: pointer;
-  flex-wrap: nowrap;
   text-wrap: nowrap;
 }
 
 .dropDownMenu {
-  position: absolute;
   width: 100px;
   height: 100px;
+  /* background-color: #eee; */
+  /* position: absolute; */
   top: 10px;
-  height: 100px;
-  width: 100px;
-  background-color: yellow;
 }
+
+/* [popover] {
+  inset: unset;
+  top: anchor(bottom);
+  left: anchor(center);
+  translate: -50%;
+} */
+
 .dropDownList {
   list-style: none;
   background-color: aqua;
