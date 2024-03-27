@@ -52,12 +52,23 @@ function SearchnSort({ searchProduct, setSearchProduct }) {
           />
           <DropDown
             name={"Company"}
-            options={["Featured", "Sony", "Apple", "Ptron", "Marshall", "Zebronics", "Boat", "JBL"]}
+            options={["Featured", "JBL", "Sony", "Boat", "Zebronics", "Marshall", "Ptron"]}
           />
           <DropDown name={"Colour"} options={["Featured", "Blue", "Black", "White", "Brown"]} />
           <DropDown
             name={"Price"}
             options={["Featured", "₹0 - ₹1,000", "₹1,000 - ₹10,000", "₹10,000 - ₹20,000"]}
+          />
+          <DropDown
+            name={"Sort by :"}
+            type={"sort"}
+            options={[
+              "Featured",
+              "Price : Lowest",
+              "Price : Highest",
+              "Name : (A-Z)",
+              "Name : (Z-A)",
+            ]}
           />
         </div>
       </div>

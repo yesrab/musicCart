@@ -3,6 +3,10 @@ import itunes from "../../assets/itunes.svg";
 import styles from "./account.module.css";
 import LoginForm from "../../components/account Forms/LoginForm";
 import { NavLink } from "react-router-dom";
+export const action = async ({ request, params }) => {
+  console.log(await request.json());
+  return null;
+};
 function Login() {
   return (
     <main>

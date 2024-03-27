@@ -1,15 +1,50 @@
 const express = require("express");
 require("dotenv").config();
 require("express-async-errors");
-const PORT = 8080;
+//evn
+const PORT = process.env.PORT || 8080;
+const DB_URI = process.env.DB;
+//env
+
 const app = express();
-const fs = require("fs");
 const path = require("path");
+const connectDB = require("./db/connect");
+
+//express body json parsing middleware
+app.use(express.json());
+
+//express url parsing middleware
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
-  res.status(200).send("Hello World!");
+  res.status(200).json({
+    message: "Hello from the server",
+    status: "success",
+    currentTime: new Date().toISOString(),
+  });
 });
 app.get("/image", (req, res) => {
-  const pathName = path.resolve(__dirname, "./images/image1.png");
+  const pathName = path.resolve(__dirname, "./images/400/400_1.jpg");
   res.sendFile(pathName);
 });
-app.listen(PORT, () => console.log(`Server is listening port ${PORT}...`));
+
+//account routes import
+const accoutrRouter = require("./routes/account");
+app.use("/api/v1/account/", accoutrRouter);
+
+//globalError handler middleware
+const gloablErrorHandler = require("./middleware/globalErrorHandler");
+app.use(gloablErrorHandler);
+
+//start server and connet to db
+const startServer = async () => {
+  try {
+    await connectDB(DB_URI);
+    console.log("DB connected");
+    app.listen(PORT, () => console.log(`Server is listening port ${PORT}...`));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+startServer();

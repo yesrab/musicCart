@@ -19,7 +19,7 @@ import styles from "./dropDown.module.css";
 import { useSearchParams } from "react-router-dom";
 const options = ["Red", "Orange", "Yellow", "Green"];
 
-export default function DropDown({ name, options }) {
+export default function DropDown({ name, options, type }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -92,7 +92,7 @@ export default function DropDown({ name, options }) {
     setSearchParams(searchObj);
   };
 
-  const selectedItemLabel = selectedIndex !== null ? options[selectedIndex] : undefined;
+  const selectedItemLabel = selectedIndex !== null ? options[selectedIndex] : "Featured";
 
   return (
     <>
@@ -103,8 +103,9 @@ export default function DropDown({ name, options }) {
         aria-autocomplete='none'
         style={{ width: 150, lineHeight: 2 }}
         {...getReferenceProps()}
-        className={styles.dropdownButtons}>
-        {name} <span className='material-symbols-outlined'>expand_more</span>
+        className={` ${type == "sort" ? styles.sorter : styles.dropdownButtons} `}>
+        {type == "sort" ? name + " " + selectedItemLabel : name}
+        <span className='material-symbols-outlined'>expand_more</span>
       </div>
       {isOpen && (
         <FloatingPortal>

@@ -1,8 +1,12 @@
 import React from "react";
 import itunes from "../../assets/itunes.svg";
 import styles from "./account.module.css";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SignUpForm from "../../components/account Forms/SignUpForm";
+export const action = async ({ request, params }) => {
+  console.log(await request.json());
+  return null;
+};
 function Signup() {
   return (
     <main>
@@ -20,9 +24,12 @@ function Signup() {
         </div>
       </div> */}
       <div className={styles.redirectionContainer}>
-        <NavLink className={styles.redirection} to='/account/signup'>
-          Create your Musicart account
-        </NavLink>
+        <span className={styles.toLogin}>
+          Already have an account?{" "}
+          <Link to='/account/login' className={styles.linkStyles}>
+            Sign in
+          </Link>
+        </span>
       </div>
     </main>
   );

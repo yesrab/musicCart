@@ -6,8 +6,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Login from "./pages/account/Login";
-import Signup from "./pages/account/Signup";
+import Login, { action as loginAction } from "./pages/account/Login";
+import Signup, { action as signupAction } from "./pages/account/Signup";
 import AccountLayout from "./pages/Layouts/AccountLayout";
 import HomeLayout from "./pages/Layouts/HomeLayout";
 import CartPage from "./pages/cart/CartPage";
@@ -20,8 +20,8 @@ const browserRouter = createBrowserRouter(
         <Route path='mycart' element={<CartPage />} />
       </Route>
       <Route path='/account' element={<AccountLayout />}>
-        <Route path='login' element={<Login />} />
-        <Route path='signup' element={<Signup />} />
+        <Route action={loginAction} path='login' element={<Login />} />
+        <Route action={signupAction} path='signup' element={<Signup />} />
       </Route>
     </Route>
   )

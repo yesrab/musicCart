@@ -19,6 +19,12 @@
   width: 100%;
 }
 
+.toLogin {
+  margin-bottom: 1em;
+}
+.linkStyles {
+  color: black;
+}
 .redirection {
   width: 90%;
   display: flex;
