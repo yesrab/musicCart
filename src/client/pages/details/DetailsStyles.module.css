@@ -1,6 +1,6 @@
 .detailsContainer {
-  border: 2px solid pink;
-  min-height: 700px;
+  /* border: 2px solid pink; */
+  /* min-height: 700px; */
   padding: 2%;
 }
 
@@ -11,4 +11,225 @@
   border-radius: 8px;
   text-decoration: none;
   padding: 0.5em 2em;
+}
+
+.productDescription {
+  margin-top: 1em;
+}
+
+.productDataContainer {
+  /* background-color: aqua; */
+  display: flex;
+  margin-top: 1%;
+}
+
+/* .imagesContainer {
+  background-color: bisque;
+  width: 60%;
+  min-width: 60%;
+} */
+
+.imagesContainer {
+  width: 60%;
+  min-width: 60%;
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: end; */
+  justify-content: end;
+  /* border: 2px solid saddlebrown; */
+  /* padding: 0 0 0 10%; */
+}
+
+.carouselDivs {
+  display: flex;
+  scale: 0.9;
+  /* width: 80%; */
+  /* padding: 1%; */
+  border: 2px solid black;
+  border-radius: 3%;
+}
+
+.thumbs {
+  display: flex !important ;
+  align-items: center !important ;
+  justify-content: center !important ;
+}
+.mainImageContainer {
+  border: 2px solid black;
+  max-width: 70%;
+  min-width: 70%;
+  height: 70%;
+  /* background-color: red; */
+  border-radius: 2%;
+}
+
+.mainImageContainer > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 3%;
+  object-fit: contain;
+}
+.imageList {
+  margin-top: 1em;
+  background: white;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+.imageList > button {
+  background-color: white;
+  border-radius: 10%;
+  width: 10%;
+  cursor: pointer;
+}
+.listImages {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  border-radius: 10%;
+  scale: 0.9;
+}
+
+.DetailsContaier {
+  /* background-color: yellow; */
+  flex-grow: 1;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.ratingBox {
+  display: flex;
+  align-items: center;
+}
+
+.aboutList {
+  padding-left: 5%;
+}
+
+.aboutList > li {
+  margin-top: 10px;
+}
+.bldFont {
+  font-weight: 700;
+}
+
+.detailsButons {
+  width: 40%;
+  background-color: #ffb800;
+  padding: 1%;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+}
+.detailsButonsa {
+  width: 40%;
+  background-color: #ffd600;
+  padding: 1%;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+}
+
+.detailsButonsz {
+  display: none;
+  width: 100%;
+  background-color: #ffd600;
+  padding: 2%;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  margin-top: 30px;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1000px) {
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .productDataContainer {
+    flex-direction: column;
+  }
+  .imagesContainer {
+    width: 100%;
+  }
+  .detailsButons {
+    width: 100%;
+    padding: 5%;
+  }
+  .detailsButonsa {
+    width: 100%;
+    padding: 5%;
+  }
+  .detailsButonsz {
+    display: unset;
+  }
+  .backToBtn {
+    display: none;
+  }
+  .thumbs {
+    display: none !important;
+  }
+}
+
+/* Extra small devices (phones, 380px and down) */
+@media only screen and (max-width: 380px) {
+  .productDataContainer {
+    flex-direction: column;
+  }
+  .imagesContainer {
+    width: 100%;
+  }
+  .detailsButons {
+    width: 100%;
+    padding: 5%;
+  }
+  .detailsButonsa {
+    width: 100%;
+    padding: 5%;
+  }
+  .detailsButonsz {
+    display: unset;
+  }
+  .backToBtn {
+    display: none;
+  }
+}
+@media only screen and (max-width: 280px) {
+  .productDataContainer {
+    flex-direction: column;
+  }
+  .imagesContainer {
+    width: 100%;
+  }
+  .detailsButons {
+    width: 100%;
+    padding: 5%;
+  }
+  .detailsButonsa {
+    width: 100%;
+    padding: 5%;
+  }
+  .detailsButonsz {
+    display: unset;
+  }
+  .backToBtn {
+    display: none;
+  }
 }

@@ -13,6 +13,7 @@ import HomeLayout, { loader as HomeLoader } from "./pages/Layouts/HomeLayout";
 import CartPage from "./pages/cart/CartPage";
 import { Toaster } from "react-hot-toast";
 import { LoginContext } from "./context/loginContext";
+import { CartContext } from "./context/userCartContext";
 import { useContext } from "react";
 import DetailsPage, {
   loader as detailsLoader,
@@ -20,7 +21,7 @@ import DetailsPage, {
 
 function App() {
   const { loginState, dispatch } = useContext(LoginContext);
-
+  const { cartState, dispatch: cartDispatch } = useContext(CartContext);
   const browserRouter = createBrowserRouter(
     createRoutesFromElements(
       <Route>

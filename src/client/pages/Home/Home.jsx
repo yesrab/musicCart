@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import OfferBanner from "../../components/HomeHeader/OfferBanner";
 import styles from "./HomeStyles.module.css";
 import SearchnSort from "../../components/SearchnSort/SearchnSort";
-import { useOutletContext } from "react-router-dom";
+import { Await, useOutletContext } from "react-router-dom";
 import Products from "../../components/productsCard/Products";
 
 function Home() {
-  const [searchProduct, setSearchProduct, products] = useOutletContext();
+  const [searchProduct, setSearchProduct, allProducts, products] =
+    useOutletContext();
   const [gridView, setGridView] = useState(true);
   const setView = (view) => {
     if (view === "grid") {
@@ -24,14 +25,24 @@ function Home() {
         searchProduct={searchProduct}
         setSearchProduct={setSearchProduct}
       />
-      <div
-        className={`  ${
-          gridView ? styles.productsContainer : styles.listViewContainer
-        }`}>
-        {products.allProducts.map((item, key) => {
-          return <Products gridView={gridView} product={item} key={key} />;
-        })}
-      </div>
+      <Suspense fallback={<h1>Loading</h1>}>
+        <Await resolve={products}>
+          {(res) => {
+            return (
+              <div
+                className={`  ${
+                  gridView ? styles.productsContainer : styles.listViewContainer
+                }`}>
+                {allProducts?.allProducts?.map((item, key) => {
+                  return (
+                    <Products gridView={gridView} product={item} key={key} />
+                  );
+                })}
+              </div>
+            );
+          }}
+        </Await>
+      </Suspense>
     </main>
   );
 }

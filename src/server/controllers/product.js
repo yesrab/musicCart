@@ -1,4 +1,6 @@
 const products = require("../models/products");
+const cart = require("../models/cart");
+
 const test = (req, res) => {
   res.status(200).json({
     message: "hello from product route test",
@@ -7,6 +9,8 @@ const test = (req, res) => {
 };
 
 const getAllProducts = async (request, responce) => {
+  let cartSize;
+
   const queryObj = {};
   const sortObj = {};
   const {
@@ -61,14 +65,29 @@ const getAllProducts = async (request, responce) => {
       $lte: max,
     };
   }
-
   const allProducts = await products.find(queryObj).sort(sortObj);
+
+  if (!responce.locals.tokenStatus) {
+    cartSize = 0;
+  } else {
+    const { id } = responce.locals.tokenData;
+    const existingCart = await cart.findOne({
+      customerId: id,
+    });
+    if (existingCart) {
+      cartSize = existingCart.cartItems.length;
+    } else {
+      const newCart = await cart.create({ customerId: id });
+      cartSize = 0;
+    }
+  }
+
   const nbHits = allProducts.length;
   responce.status(200).json({
     allProducts,
     status: "success",
     nbHits,
-    cartSize: 0,
+    cartSize: cartSize,
   });
 };
 
@@ -76,10 +95,75 @@ const getProduct = async (request, responce) => {
   const { productID } = request.params;
   console.log(productID);
   const product = await products.findById(productID);
-  responce.status(200).json({
+  if (product) {
+    return responce.status(200).json({
+      requestedID: productID,
+      product,
+      status: "success",
+      path: request.path,
+      url: request.originalUrl,
+    });
+  }
+  responce.status(404).json({
     requestedID: productID,
-    product,
+    status: "Error",
+  });
+};
+const getCart = async (request, responce) => {
+  const { id } = responce.locals.tokenData;
+  const userCart = await cart.findOne({
+    customerId: id,
+  });
+  if (!userCart) {
+    const newCart = await cart.create({ customerId: id });
+    const { _id, customerId, cartItems } = newCart;
+    return responce.status(201).json({
+      _id,
+      customerId,
+      cartItems,
+      stale: false,
+    });
+  }
+  const { _id, customerId, cartItems } = userCart;
+  responce.json({
+    _id,
+    customerId,
+    cartItems,
+    stale: false,
   });
 };
 
-module.exports = { test, getAllProducts, getProduct };
+const addItemToCart = async (request, responce) => {
+  const { id } = responce.locals.tokenData;
+  const { _id, name, price, url } = request.body;
+  // console.log({ _id, name, price, url });
+  let cartData = await cart.findOne({ customerId: id });
+  const existingProductIndex = cartData.cartItems.findIndex(
+    (item) => item.productId.toString() === _id
+  );
+
+  if (existingProductIndex !== -1) {
+    cartData.cartItems[existingProductIndex].quantity += 1;
+  } else {
+    cartData.cartItems.push({
+      name: name,
+      productId: _id,
+      productPrice: price,
+      image: url,
+      quantity: 1,
+    });
+  }
+
+  // Save the updated cart data
+  await cartData.save();
+  const { _id: cartId, customerId, cartItems } = cartData;
+  responce.json({
+    _id: cartId,
+    customerId,
+    cartItems,
+    status: "success",
+    message: `added item ${name}`,
+  });
+};
+
+module.exports = { test, getAllProducts, getProduct, addItemToCart, getCart };

@@ -1,5 +1,17 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Outlet, useLoaderData, useSearchParams } from "react-router-dom";
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  Suspense,
+  useCallback,
+} from "react";
+import {
+  Outlet,
+  useLoaderData,
+  useSearchParams,
+  defer,
+  Await,
+} from "react-router-dom";
 import Header from "../../components/header and footer/Header";
 import Footer from "../../components/header and footer/Footer";
 import styles from "./layoutStyles.module.css";
@@ -11,39 +23,6 @@ export const loader = async ({ loginState, request, params }) => {
   const getProductsURL = "/api/v1/products/allProducts";
   const clientURL = new URL(request.url);
   const FetchURL = new URL(getProductsURL, window.location.origin);
-
-  // const type = clientURL.searchParams.get("Headphone type");
-  // const Company = clientURL.searchParams.get("Company");
-  // const Colour = clientURL.searchParams.get("Colour");
-  // const Price = clientURL.searchParams.get("Price");
-  // const product = clientURL.searchParams.get("product");
-
-  // if (type) {
-  //   FetchURL.searchParams.set("Headphone type", type);
-  // } else {
-  //   FetchURL.searchParams.delete("Headphone type");
-  // }
-  // if (Company) {
-  //   FetchURL.searchParams.set("Company", Company);
-  // } else {
-  //   FetchURL.searchParams.delete("Company");
-  // }
-  // if (Colour) {
-  //   FetchURL.searchParams.set("Colour", Colour);
-  // } else {
-  //   FetchURL.searchParams.delete("Colour");
-  // }
-  // if (Price) {
-  //   FetchURL.searchParams.set("Price", Price);
-  // } else {
-  //   FetchURL.searchParams.delete("Price");
-  // }
-  // if (product) {
-  //   FetchURL.searchParams.set("product", product);
-  // } else {
-  //   FetchURL.searchParams.delete("product");
-  // }
-
   const queryParams = [
     "Headphone type",
     "Company",
@@ -60,13 +39,19 @@ export const loader = async ({ loginState, request, params }) => {
       FetchURL.searchParams.delete(param);
     }
   });
-  const products = await fetchUtils(FetchURL.toString());
-  return products;
+
+  const productsRequest = new Request(FetchURL.toString(), {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${loginState.token}`,
+    },
+  });
+  const products = fetchUtils(productsRequest);
+  return defer({ products });
 };
 function HomeLayout() {
-  const products = useLoaderData();
-
-  // console.log(products);
+  const { products } = useLoaderData();
+  const [allProducts, setAllProducts] = useState("");
   const [searchProduct, setSearchProduct] = useState("");
   const debouncedInputSearch = useDebounce(searchProduct, 300);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -83,12 +68,21 @@ function HomeLayout() {
     setSearchParams(searchObj);
   }, [debouncedInputSearch]);
 
+  const setAllData = useCallback(async () => {
+    const data = await products;
+    setAllProducts(data);
+  }, [products]);
+  useEffect(() => {
+    setAllData();
+  }, [products, setAllData]);
   return (
     <main className={styles.accountLayout}>
       <Header searchProduct={searchProduct} setSearchProduct={setSearchProduct} />
-      <HomeHeader cart={products.cartSize} />
-      <Outlet context={[searchProduct, setSearchProduct, products]} />
-      <Footer cart={products.cartSize} />
+      <HomeHeader cart={allProducts?.cartSize} />
+      <Outlet
+        context={[searchProduct, setSearchProduct, allProducts, products]}
+      />
+      <Footer cart={allProducts?.cartSize} />
     </main>
   );
 }

@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./HnF.module.css";
-import { useNavigation, useLocation, NavLink } from "react-router-dom";
+import { useNavigation, useLocation, NavLink, Link } from "react-router-dom";
 import home from "../../assets/home.svg";
 import cart from "../../assets/cart.svg";
 import login from "../../assets/logedIn.svg";
 import invoice from "../../assets/invoice.svg";
+import logout from "../../assets/logOut.svg";
 import { LoginContext } from "../../context/loginContext";
 function Footer({ cart: cartCount }) {
-  const { loginState } = useContext(LoginContext);
+  const { loginState, dispatch } = useContext(LoginContext);
   const [show, setShow] = useState(false);
   const navigation = useLocation();
   useEffect(() => {
@@ -62,19 +63,35 @@ function Footer({ cart: cartCount }) {
             </>
           )}
         </NavLink>
-        <NavLink className={styles.navlinks} to='/account/login'>
-          {({ isActive }) => (
-            <>
-              <div
-                className={isActive ? styles.possitionIndicator : styles.blank}
-              />
-              <div className={styles.navIconsContainer}>
-                <img className={styles.navIcons} src={login} />
-                Login
-              </div>
-            </>
-          )}
-        </NavLink>
+        {!loginState.login ? (
+          <NavLink className={styles.navlinks} to='/account/login'>
+            {({ isActive }) => (
+              <>
+                <div
+                  className={isActive ? styles.possitionIndicator : styles.blank}
+                />
+                <div className={styles.navIconsContainer}>
+                  <img className={styles.navIcons} src={login} />
+                  Login
+                </div>
+              </>
+            )}
+          </NavLink>
+        ) : null}
+        {loginState.login ? (
+          <Link
+            onClick={() => {
+              dispatch({ type: "LOGOUT" });
+            }}
+            className={styles.navlinks}
+            to='.'>
+            <div className={styles.blank} />
+            <div className={styles.navIconsContainer}>
+              <img className={styles.navIcons} src={logout} />
+              LogOut
+            </div>
+          </Link>
+        ) : null}
       </footer>
     </>
   );

@@ -11,6 +11,7 @@ const secrete = process.env.JWT_SUPER_SEACRETE || "superGupthKey";
 const generateToken = (idObj) => {
   return jwt.sign(idObj, secrete);
 };
+
 const createAccount = async (request, responce) => {
   console.log("hit account creation route");
   const { password, mobileNumber, email, name } = request.body;
