@@ -16,7 +16,7 @@
   text-wrap: nowrap;
 }
 
-.sorter {
+.sorterdesktop {
   box-sizing: content-box;
   display: flex;
   align-items: center;
@@ -30,6 +30,22 @@
   margin-left: auto;
   font-size: 12px;
 }
+
+.sortermobile {
+  box-sizing: content-box;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 2em;
+  padding: 2px 2px;
+  cursor: pointer;
+  text-wrap: nowrap;
+  margin-left: auto;
+  font-size: 12px;
+}
+
 .dropDownMenu {
   width: 100px;
   height: 100px;
@@ -52,4 +68,44 @@
 }
 .dropDownList > li {
   margin-top: 5px;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1000px) {
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .sorterdesktop {
+    display: none;
+  }
+  .sortermobile {
+    display: flex;
+  }
+}
+
+/* Extra small devices (phones, 380px and down) */
+@media only screen and (max-width: 380px) {
+  .sorterdesktop {
+    display: none;
+  }
+  .sortermobile {
+    display: flex;
+  }
+}
+@media only screen and (max-width: 280px) {
+  .sorterdesktop {
+    display: none;
+  }
+  .sortermobile {
+    display: flex;
+  }
 }

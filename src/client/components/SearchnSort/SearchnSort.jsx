@@ -4,17 +4,9 @@ import styles from "./SnS.module.css";
 import gridIcon from "../../assets/gridView.svg";
 import listIcon from "../../assets/listView.svg";
 import DropDown from "../DropDown/DropDown";
-
 import { useFloating } from "@floating-ui/react";
-function SearchnSort({ searchProduct, setSearchProduct }) {
-  const [gridView, setGridView] = useState(true);
-  const setView = (view) => {
-    if (view === "grid") {
-      setGridView(true);
-    } else {
-      setGridView(false);
-    }
-  };
+
+function SearchnSort({ searchProduct, setSearchProduct, gridView, setView }) {
   return (
     <section className={styles.SnScontainer}>
       <div className={styles.searchBoxContainer}>
@@ -36,28 +28,65 @@ function SearchnSort({ searchProduct, setSearchProduct }) {
             onClick={() => {
               setView("grid");
             }}
-            className={`material-symbols-outlined  ${gridView ? styles.filled : styles.unfilled} `}>
+            className={`material-symbols-outlined  ${
+              gridView ? styles.filled : styles.unfilled
+            } `}>
             grid_view
           </button>
           <button
             onClick={() => {
               setView("list");
             }}
-            className={`material-symbols-outlined ${gridView ? styles.unfilled : styles.filled} `}>
+            className={`material-symbols-outlined ${
+              gridView ? styles.unfilled : styles.filled
+            } `}>
             view_list
           </button>
           <DropDown
+            name={"Sort by :"}
+            type={"sortM"}
+            className={styles.sortermobile}
+            options={[
+              "Featured",
+              "Price : Lowest",
+              "Price : Highest",
+              "Name : (A-Z)",
+              "Name : (Z-A)",
+            ]}
+          />
+          <DropDown
             name={"Headphone type"}
-            options={["Featured", "In-ear headphone", "On-ear headphone", "Over-ear headphone"]}
+            options={[
+              "Featured",
+              "In-ear headphone",
+              "On-ear headphone",
+              "Over-ear headphone",
+            ]}
           />
           <DropDown
             name={"Company"}
-            options={["Featured", "JBL", "Sony", "Boat", "Zebronics", "Marshall", "Ptron"]}
+            options={[
+              "Featured",
+              "JBL",
+              "Sony",
+              "Boat",
+              "Zebronics",
+              "Marshall",
+              "Ptron",
+            ]}
           />
-          <DropDown name={"Colour"} options={["Featured", "Blue", "Black", "White", "Brown"]} />
+          <DropDown
+            name={"Colour"}
+            options={["Featured", "Blue", "Black", "White", "Brown"]}
+          />
           <DropDown
             name={"Price"}
-            options={["Featured", "₹0 - ₹1,000", "₹1,000 - ₹10,000", "₹10,000 - ₹20,000"]}
+            options={[
+              "Featured",
+              "₹0 - ₹1,000",
+              "₹1,000 - ₹10,000",
+              "₹10,000 - ₹20,000",
+            ]}
           />
           <DropDown
             name={"Sort by :"}

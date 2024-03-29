@@ -2,9 +2,34 @@ import React from "react";
 import itunes from "../../assets/itunes.svg";
 import styles from "./account.module.css";
 import LoginForm from "../../components/account Forms/LoginForm";
-import { NavLink } from "react-router-dom";
-export const action = async ({ request, params }) => {
-  console.log(await request.json());
+import { NavLink, redirect, redirectDocument } from "react-router-dom";
+import fetchUtils from "../../libs/fetchUtils";
+import toast from "react-hot-toast";
+export const action = async ({ request, params, dispatch }) => {
+  const userData = await request.json();
+  const loginURL = "/api/v1/account/login";
+  const loginRequest = new Request(loginURL, {
+    method: "POST",
+    body: JSON.stringify(userData),
+    headers: { "Content-Type": "application/json" },
+  });
+  const submitedResponce = await fetchUtils(loginRequest);
+  if (submitedResponce.status instanceof Error) {
+    toast.error("sometning went wrong, please try again later");
+  }
+  if (submitedResponce.status === "Error") {
+    toast.error(submitedResponce.message);
+  }
+  if (submitedResponce.status === "success") {
+    toast.success(`${submitedResponce.message}`);
+    console.log(submitedResponce);
+    const { _id, name, token } = submitedResponce;
+    dispatch({
+      type: "LOGIN",
+      payload: { token, id: _id, name: name },
+    });
+    return redirectDocument("/");
+  }
   return null;
 };
 function Login() {

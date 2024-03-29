@@ -1,4 +1,75 @@
 .HomepageMain {
-  border: 2px solid violet;
+  /* border: 2px solid violet; */
   /* min-height: 80dvh; */
+}
+.productsContainer {
+  /* background-color: yellow; */
+  display: grid;
+  margin: 1% 10%;
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  gap: 1em;
+}
+
+.listViewContainer {
+  margin: 1% 10%;
+  display: grid;
+  grid-auto-flow: row;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1000px) {
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+  .productsContainer {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(20%, 1fr));
+    margin: 2% 0;
+    padding: 3%;
+  }
+  .listViewContainer {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(20%, 1fr));
+    margin: 2% 0;
+    padding: 3%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .productsContainer {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(20%, 1fr));
+    margin: 2% 0;
+    padding: 3%;
+  }
+  .listViewContainer {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(20%, 1fr));
+    margin: 2% 0;
+    padding: 3%;
+  }
+}
+
+/* Extra small devices (phones, 380px and down) */
+@media only screen and (max-width: 380px) {
+  .productsContainer {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(20%, 1fr));
+    margin: 2% 0;
+    padding: 3%;
+  }
+  .listViewContainer {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(20%, 1fr));
+    margin: 2% 0;
+    padding: 3%;
+  }
+}
+@media only screen and (max-width: 280px) {
 }

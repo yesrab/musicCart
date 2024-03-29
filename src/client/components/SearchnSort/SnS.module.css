@@ -26,6 +26,20 @@
   margin-left: 10px;
 }
 
+.sortermobile {
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 2em;
+  padding: 2px 2px;
+  cursor: pointer;
+  text-wrap: nowrap;
+  margin-left: auto;
+  font-size: 12px;
+}
 .unfilled {
   background-color: white;
   border: none;
@@ -79,6 +93,9 @@
 
 /* Large devices (laptops/desktops, 992px and down) */
 @media only screen and (max-width: 992px) {
+  .searchBoxContainer {
+    display: none;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and down) */

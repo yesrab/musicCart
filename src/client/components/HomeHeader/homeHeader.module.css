@@ -15,6 +15,67 @@
   color: #000;
 }
 
+.accountOptions {
+  margin-left: auto;
+  /* background-color: #7286b4; */
+  display: flex;
+  min-width: 15%;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.settings {
+  position: absolute;
+  background-color: white;
+  color: black;
+  padding: 1%;
+  box-shadow: 0px 0px 20px 0px #0000005e;
+  border-radius: 8px;
+  height: 5em;
+  width: 10em;
+  top: 110%;
+  right: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 9999;
+}
+
+.Logoutbtn {
+  border: none;
+  outline: none;
+  font-weight: 700;
+  background-color: white;
+  cursor: pointer;
+}
+
+.CartLink {
+  display: flex;
+  align-items: center;
+  padding: 3% 4%;
+  text-decoration: none;
+  color: white;
+  background-color: #1d7000;
+  border-radius: 1em;
+  height: 80%;
+}
+.profileIcon {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 2px solid black;
+  font-weight: 500;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
 .banner {
   width: 100%;
   display: flex;
@@ -85,6 +146,18 @@
   .brandingContainer {
     margin: 0 1%;
   }
+  .accountOptions {
+    min-width: 20%;
+  }
+  .profileIcon {
+    width: 19%;
+  }
+}
+
+@media only source and (min-width: 993px) {
+  .accountOptions {
+    min-width: 25%;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and down) */
@@ -98,6 +171,9 @@
   .overlayAd {
     gap: 10px;
     margin-left: 2%;
+  }
+  .accountOptions {
+    min-width: 30%;
   }
 }
 

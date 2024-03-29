@@ -14,13 +14,15 @@ const connectDB = require("./db/connect");
 app.use(express.json());
 
 //express url parsing middleware
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Hello from the server",
     status: "success",
     currentTime: new Date().toISOString(),
+    path: req.path,
+    url: req.originalUrl,
   });
 });
 app.get("/image", (req, res) => {
@@ -31,6 +33,9 @@ app.get("/image", (req, res) => {
 //account routes import
 const accoutrRouter = require("./routes/account");
 app.use("/api/v1/account/", accoutrRouter);
+//products route import
+const productRouter = require("./routes/product");
+app.use("/api/v1/products", productRouter);
 
 //globalError handler middleware
 const gloablErrorHandler = require("./middleware/globalErrorHandler");

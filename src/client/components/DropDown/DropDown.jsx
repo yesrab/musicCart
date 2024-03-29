@@ -92,7 +92,8 @@ export default function DropDown({ name, options, type }) {
     setSearchParams(searchObj);
   };
 
-  const selectedItemLabel = selectedIndex !== null ? options[selectedIndex] : "Featured";
+  const selectedItemLabel =
+    selectedIndex !== null ? options[selectedIndex] : "Featured";
 
   return (
     <>
@@ -103,8 +104,14 @@ export default function DropDown({ name, options, type }) {
         aria-autocomplete='none'
         style={{ width: 150, lineHeight: 2 }}
         {...getReferenceProps()}
-        className={` ${type == "sort" ? styles.sorter : styles.dropdownButtons} `}>
-        {type == "sort" ? name + " " + selectedItemLabel : name}
+        className={` ${
+          type == "sort"
+            ? styles.sorterdesktop
+            : type == "sortM"
+            ? styles.sortermobile
+            : styles.dropdownButtons
+        } `}>
+        {type?.includes("sort") ? name + " " + selectedItemLabel : name}
         <span className='material-symbols-outlined'>expand_more</span>
       </div>
       {isOpen && (

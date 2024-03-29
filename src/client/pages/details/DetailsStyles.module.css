@@ -1,0 +1,14 @@
+.detailsContainer {
+  border: 2px solid pink;
+  min-height: 700px;
+  padding: 2%;
+}
+
+.backToBtn {
+  background-color: #2e0052;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 0.5em 2em;
+}

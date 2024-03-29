@@ -18,7 +18,12 @@ const AccountSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Please add a number"],
     unique: true,
-    validate: [isMobilePhone, "Please add a valid number"],
+    validate: [
+      (val) => {
+        return isMobilePhone(val.toString());
+      },
+      "Please add a valid number",
+    ],
   },
   password: {
     type: String,
@@ -33,6 +38,14 @@ AccountSchema.pre("save", async function (next) {
 });
 
 AccountSchema.statics.login = async function (accountInfo, password) {
+  const loginError = new mongoose.Error.ValidationError();
+  loginError.message = "Account login failed";
+  loginError._message = "Account validation failed";
+  loginError.errors.password = {
+    name: "loginError",
+    message: "Incorrect email/password",
+  };
+
   const user = await this.findOne({
     $or: [{ email: accountInfo }, { number: accountInfo }],
   });
@@ -41,9 +54,16 @@ AccountSchema.statics.login = async function (accountInfo, password) {
     if (auth) {
       return user;
     }
-    throw new mongoose.Error(JSON.stringify({ path: "password", msg: "Incorrect email/password" }));
+    throw loginError;
+    // throw new mongoose.Error.ValidationError(
+    //   JSON.stringify({ path: "password", msg: "Incorrect email/password" })
+    // );
   }
-  throw new mongoose.Error(
-    JSON.stringify({ path: "number", path: "email", msg: "Incorrect email/password" })
-  );
+  throw loginError;
+  // throw new mongoose.Error.ValidationError(
+  //   JSON.stringify({ path: "password", msg: "Incorrect email/password" })
+  // );
 };
+
+const account = mongoose.model("Account", AccountSchema);
+module.exports = account;

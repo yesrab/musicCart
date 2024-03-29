@@ -1,13 +1,7 @@
 import React from "react";
-import SearchnSort from "../../components/SearchnSort/SearchnSort";
 
 function CartPage() {
-  return (
-    <div>
-      <SearchnSort />
-      rest of the stuff
-    </div>
-  );
+  return <div>this is cart page</div>;
 }
 
 export default CartPage;
