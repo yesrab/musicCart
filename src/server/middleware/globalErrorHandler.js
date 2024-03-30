@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const accountError = require("../errors/accountError");
 const cartError = require("../errors/cartError");
 const globalErrorHandler = (error, request, responce, next) => {
-  // console.log("message from global handler", error);
+  console.log("message from global handler", error);
   // console.log(error.)
   if (error.code == 11000) {
     return accountError(error, request, responce);

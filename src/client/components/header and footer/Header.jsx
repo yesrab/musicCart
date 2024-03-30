@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
 import styles from "./HnF.module.css";
 import callImage from "../../assets/phone.svg";
-import { Link, useNavigation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import searchIcon from "../../assets/search.svg";
 import { LoginContext } from "../../context/loginContext";
 function Header({ searchProduct, setSearchProduct }) {
   const { loginState, dispatch } = useContext(LoginContext);
   const logoutFunction = () => {
     dispatch({ type: "LOGOUT" });
+  };
+  const nav = useNavigate();
+  const location = useLocation();
+  const backToHome = () => {
+    if (location.pathname != "/") {
+      nav("/");
+    }
   };
   return (
     <header className={styles.headerbar}>
@@ -41,6 +48,7 @@ function Header({ searchProduct, setSearchProduct }) {
           onChange={(e) => {
             setSearchProduct(e.target.value);
           }}
+          onMouseDown={backToHome}
           type='text'
           placeholder='Search Musicart'
         />

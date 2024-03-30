@@ -13,6 +13,14 @@ const cartSchema = mongoose.Schema({
           required: [true, "Please add a name"],
           trim: true,
         },
+        color: {
+          type: String,
+          required: [true, "Please add a color"],
+          enum: {
+            values: ["blue", "brown", "black", "white"],
+            message: "{value} is not a supported color",
+          },
+        },
         productId: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "products",
@@ -29,13 +37,25 @@ const cartSchema = mongoose.Schema({
         quantity: {
           type: Number,
           min: 1,
-          max: [6, "maximum only 6 items per product"],
+          max: [8, "maximum only 8 items per product"],
           default: 1,
+        },
+        subTotal: {
+          type: Number,
+          default: 0,
         },
       },
     ],
     default: [],
   },
 });
+
+cartSchema.pre("save", function (next) {
+  this.cartItems.forEach((productObj) => {
+    productObj.subTotal = productObj.productPrice * productObj.quantity;
+  });
+  next();
+});
+
 const cart = mongoose.model("cart", cartSchema);
 module.exports = cart;

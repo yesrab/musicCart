@@ -15,13 +15,14 @@ function Products({ product, gridView }) {
     if (!loginState.login) {
       navigate("/account/login");
     } else {
-      const { _id, name, price, images } = product;
+      const { _id, name, price, images, color } = product;
       const url = images[0].altUrl;
       const data = {
         _id,
         name,
         price,
         url,
+        color,
       };
       const addProductURL = "/api/v1/products/cart/additem";
       const addProductReq = new Request(addProductURL, {

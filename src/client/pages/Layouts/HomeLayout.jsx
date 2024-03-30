@@ -19,7 +19,7 @@ import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import useDebounce from "../../hooks/useDebounce";
 import fetchUtils from "../../libs/fetchUtils";
 export const loader = async ({ loginState, request, params }) => {
-  console.log("homeLoader triggered");
+  // console.log("homeLoader triggered");
   const getProductsURL = "/api/v1/products/allProducts";
   const clientURL = new URL(request.url);
   const FetchURL = new URL(getProductsURL, window.location.origin);
@@ -69,8 +69,10 @@ function HomeLayout() {
   }, [debouncedInputSearch]);
 
   const setAllData = useCallback(async () => {
-    const data = await products;
-    setAllProducts(data);
+    try {
+      const data = await products;
+      setAllProducts(data);
+    } catch (e) {}
   }, [products]);
   useEffect(() => {
     setAllData();

@@ -1,0 +1,53 @@
+.FeedbackBox {
+  box-shadow: 0px 0px 20px 0px #0000005e;
+  border-radius: 8px;
+  padding: 3%;
+  height: 90%;
+  width: 100%;
+  /* justify-self: start; */
+}
+.FeedbackForm {
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  height: 100%;
+  align-items: center;
+}
+
+.FeedbackForm > h3 {
+  text-align: start;
+  width: 100%;
+}
+.drop {
+  border: 1px solid #919191;
+  color: #919191;
+  background-color: #f3f3f3;
+  padding: 4%;
+  border-radius: 5px;
+  border-right: 10px solid #f3f3f3;
+  width: 90%;
+}
+.FeedbackForm > textarea {
+  font-family: "Roboto", sans-serif;
+  resize: none;
+  width: 90%;
+  height: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 11px;
+  width: 100%;
+  text-align: start;
+}
+
+.FeedbackBtn {
+  margin-top: 10px;
+  width: 60%;
+  background-color: #2e0052;
+  color: white;
+  border: none;
+  padding: 1%;
+  border-radius: 10px;
+}

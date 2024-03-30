@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Link,
   ScrollRestoration,
   useLoaderData,
   useNavigate,
+  useRevalidator,
 } from "react-router-dom";
 import styles from "./DetailsStyles.module.css";
 import fetchUtils from "../../libs/fetchUtils";
@@ -11,6 +12,8 @@ import star from "../../assets/star.svg";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useMediaQuery } from "@react-hooks-hub/use-media-query";
+import { LoginContext } from "../../context/loginContext";
+import toast from "react-hot-toast";
 export const loader = async ({ request, params }) => {
   console.log(params.productId);
   const id = params.productId;
@@ -28,17 +31,55 @@ export const loader = async ({ request, params }) => {
 
 function DetailsPage() {
   const productData = useLoaderData();
+  const { loginState, dispatch } = useContext(LoginContext);
+  let revalidator = useRevalidator();
+
   // console.log(productData);
   const { device, orientation } = useMediaQuery();
-  const [currentImage, setCurretnImage] = useState("");
-  useEffect(() => {
-    setCurretnImage(productData?.product.images[0].altUrl);
-  }, []);
+  // const [currentImage, setCurretnImage] = useState("");
+  // useEffect(() => {
+  //   setCurretnImage(productData?.product.images[0].altUrl);
+  // }, []);
 
-  const switchImage = (index) => {
-    setCurretnImage(productData?.product.images[index].altUrl);
+  // const switchImage = (index) => {
+  //   setCurretnImage(productData?.product.images[index].altUrl);
+  // };
+  // console.log(device);
+
+  const navigate = useNavigate();
+  const addtoCart = async (product) => {
+    if (!loginState.login) {
+      navigate("/account/login", { replace: true });
+    } else {
+      const { _id, name, price, images, color } = product;
+      const url = images[0].altUrl;
+      const data = {
+        _id,
+        name,
+        price,
+        url,
+        color,
+      };
+      const addProductURL = "/api/v1/products/cart/additem";
+      const addProductReq = new Request(addProductURL, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Authorization": `Bearer ${loginState.token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await fetchUtils(addProductReq);
+      // console.log(result);
+      if (result.status == "success") {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+      }
+      revalidator.revalidate();
+    }
+    console.log(product);
   };
-  console.log(device);
   return (
     <div className={styles.detailsContainer}>
       <ScrollRestoration />
@@ -103,8 +144,20 @@ function DetailsPage() {
             <span className={styles.bldFont}>Brand</span> -{" "}
             {productData.product.brand}
           </p>
-          <button className={styles.detailsButonsa}>Add to cart</button>
-          <button className={styles.detailsButons}>Buy Now</button>
+          <button
+            onClick={() => {
+              addtoCart(productData.product);
+            }}
+            className={styles.detailsButonsa}>
+            Add to cart
+          </button>
+          <button
+            onClick={() => {
+              navigate("/View Cart");
+            }}
+            className={styles.detailsButons}>
+            Buy Now
+          </button>
         </div>
       </div>
     </div>

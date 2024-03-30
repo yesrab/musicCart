@@ -125,23 +125,34 @@ const getCart = async (request, responce) => {
     });
   }
   const { _id, customerId, cartItems } = userCart;
+
+  let totalMRP = 0;
+  let discountMRP = 0;
+  let convenienceFee = 45;
+
+  cartItems.forEach((item) => {
+    totalMRP += item.subTotal;
+  });
   responce.json({
     _id,
     customerId,
     cartItems,
+    totalMRP,
+    discountMRP,
+    convenienceFee,
+    grandTotal: totalMRP + convenienceFee + discountMRP,
     stale: false,
   });
 };
 
 const addItemToCart = async (request, responce) => {
   const { id } = responce.locals.tokenData;
-  const { _id, name, price, url } = request.body;
+  const { _id, name, price, url, color } = request.body;
   // console.log({ _id, name, price, url });
   let cartData = await cart.findOne({ customerId: id });
   const existingProductIndex = cartData.cartItems.findIndex(
     (item) => item.productId.toString() === _id
   );
-
   if (existingProductIndex !== -1) {
     cartData.cartItems[existingProductIndex].quantity += 1;
   } else {
@@ -151,9 +162,9 @@ const addItemToCart = async (request, responce) => {
       productPrice: price,
       image: url,
       quantity: 1,
+      color,
     });
   }
-
   // Save the updated cart data
   await cartData.save();
   const { _id: cartId, customerId, cartItems } = cartData;
@@ -166,4 +177,73 @@ const addItemToCart = async (request, responce) => {
   });
 };
 
-module.exports = { test, getAllProducts, getProduct, addItemToCart, getCart };
+const changeQuantity = async (request, responce) => {
+  const { id } = responce.locals.tokenData;
+  const { cartBlock, newQuantity, productId } = request.body;
+  let cartData = await cart.findOne({ customerId: id });
+  const existingProductIndex = cartData.cartItems.findIndex(
+    (item) => item.productId.toString() === productId
+  );
+  if (existingProductIndex != -1) {
+    cartData.cartItems[existingProductIndex].quantity = newQuantity;
+    await cartData.save();
+    return responce.status(200).json({
+      status: "success",
+      message: "quantity updated",
+      cartData,
+    });
+  } else {
+    return responce.status(404).json({
+      status: "Error",
+      message: "Product dose not exist",
+    });
+  }
+};
+
+const getPurchaseData = async (request, responce) => {
+  const { id, name } = responce.locals.tokenData;
+  // console.log(responce.locals.tokenData);
+  const userCart = await cart.findOne({
+    customerId: id,
+  });
+  if (!userCart) {
+    return responce.status(404).json({
+      status: "Error",
+      message: "Cart not found",
+    });
+  }
+  if (userCart.cartItems.length == 0) {
+    return responce.status(404).json({
+      status: "Error",
+      message: "Cart not found",
+    });
+  }
+
+  const { _id, customerId, cartItems } = userCart;
+
+  let totalMRP = 0;
+  let discountMRP = 0;
+  let convenienceFee = 45;
+
+  cartItems.forEach((item) => {
+    totalMRP += item.subTotal;
+  });
+  responce.json({
+    customerName: name,
+    userCart,
+    totalMRP,
+    discountMRP,
+    convenienceFee,
+    grandTotal: totalMRP + convenienceFee + discountMRP,
+  });
+};
+
+module.exports = {
+  test,
+  getAllProducts,
+  getProduct,
+  addItemToCart,
+  getCart,
+  changeQuantity,
+  getPurchaseData,
+};

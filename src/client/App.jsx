@@ -10,7 +10,7 @@ import Login, { action as loginAction } from "./pages/account/Login";
 import Signup, { action as signupAction } from "./pages/account/Signup";
 import AccountLayout from "./pages/Layouts/AccountLayout";
 import HomeLayout, { loader as HomeLoader } from "./pages/Layouts/HomeLayout";
-import CartPage from "./pages/cart/CartPage";
+import CartPage, { loader as cartLoader } from "./pages/cart/CartPage";
 import { Toaster } from "react-hot-toast";
 import { LoginContext } from "./context/loginContext";
 import { CartContext } from "./context/userCartContext";
@@ -18,6 +18,9 @@ import { useContext } from "react";
 import DetailsPage, {
   loader as detailsLoader,
 } from "./pages/details/DetailsPage";
+import CheckoutPage, {
+  loader as checkoutLoader,
+} from "./pages/checkOut/CheckoutPage";
 
 function App() {
   const { loginState, dispatch } = useContext(LoginContext);
@@ -31,8 +34,20 @@ function App() {
           }}
           element={<HomeLayout />}>
           <Route index element={<Home />} />
-          <Route path='View Cart' element={<CartPage />} />
-          <Route path='test' element={<h1>Checkout</h1>} />
+          <Route
+            loader={({ request, params }) => {
+              return cartLoader({ loginState, request, params });
+            }}
+            path='View Cart'
+            element={<CartPage />}
+          />
+          <Route
+            loader={({ request, params }) => {
+              return checkoutLoader({ loginState, request, params });
+            }}
+            path='/Checkout'
+            element={<CheckoutPage />}
+          />
           <Route
             path='details/:productId'
             loader={detailsLoader}
