@@ -1,4 +1,22 @@
 .ChekOutpage {
   padding: 2%;
-  background-color: aqua;
+  /* background-color: aqua; */
+}
+
+.BkBtn {
+  text-decoration: none;
+  color: white;
+  background-color: #2e0052;
+  padding: 0.4% 1%;
+  border-radius: 5px;
+}
+
+.heading {
+  text-decoration: underline;
+  text-align: center;
+  margin-top: 1%;
+}
+.orderContainer {
+  display: flex;
+  margin-top: 1%;
 }

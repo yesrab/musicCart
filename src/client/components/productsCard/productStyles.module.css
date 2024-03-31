@@ -71,6 +71,7 @@
   width: 100%;
   height: 100%; /* Ensure the image takes up the entire container */
   object-fit: contain;
+  padding: 5% 0;
   /* mix-blend-mode: multiply; */
 }
 .productDetails {

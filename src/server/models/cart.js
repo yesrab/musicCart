@@ -4,6 +4,7 @@ const cartSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "account",
     require: [true, "customer account id is required"],
+    unique: true,
   },
   cartItems: {
     type: [

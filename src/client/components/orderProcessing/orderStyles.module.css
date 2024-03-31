@@ -1,0 +1,50 @@
+.formContainer {
+  width: 70%;
+  min-height: 60vh;
+  /* background-color: bisque; */
+}
+.formObjs {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 2px solid #e1e1e1;
+  padding: 1%;
+}
+.formLabels {
+  color: #b52b00;
+  font-weight: 500;
+}
+
+.addressblock {
+  font-family: "Roboto", sans-serif;
+  resize: none;
+  border: 1px solid #919191;
+  border-radius: 4px;
+  margin-top: 1%;
+  height: 5em;
+  width: 20em;
+}
+
+.modeOfPay {
+  height: 2em;
+  width: 20em;
+  border: 1px solid #919191;
+  border-radius: 4px;
+}
+
+.orderSummery {
+  width: 20em;
+  /* background-color: aqua; */
+}
+
+.orderSummeryimages {
+  width: 30%;
+  margin: 1%;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -101,6 +101,7 @@ function DetailsPage() {
             // width={device == "desktop" ? "65%" : "100%"}
             height='60%'
             showThumbs={device == "desktop" ? true : false}
+            showStatus={false}
             emulateTouch>
             {productData.product.images.length &&
               productData.product.images.map((image, key) => {
