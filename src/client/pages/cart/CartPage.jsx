@@ -41,6 +41,16 @@ function CartPage() {
       <Suspense fallback={<h3>Loading</h3>}>
         <Await resolve={responce}>
           {(resolvedData) => {
+            if (!resolvedData?.cartItems?.length) {
+              return (
+                <>
+                  <h1 className={styles.empty}>YOUR CART IS EMPTY</h1>
+                  <Link className={styles.empty} to='..'>
+                    Go back!
+                  </Link>
+                </>
+              );
+            }
             return (
               <div className={styles.cartContainer}>
                 <div className={styles.cartProductsList}>

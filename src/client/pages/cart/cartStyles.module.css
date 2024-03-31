@@ -43,6 +43,13 @@
   display: flex;
 }
 
+.empty {
+  margin-top: 2em;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
 .cartProductsList {
   /* background-color: blue; */
   width: 70%;

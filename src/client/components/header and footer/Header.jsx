@@ -16,6 +16,9 @@ function Header({ searchProduct, setSearchProduct }) {
       nav("/");
     }
   };
+  if (location.pathname === "/success" || location.pathname === "/invoice") {
+    return <></>;
+  }
   return (
     <header className={styles.headerbar}>
       <div className={styles.desktopHeader}>

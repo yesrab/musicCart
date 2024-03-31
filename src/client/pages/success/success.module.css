@@ -1,0 +1,91 @@
+.successContainer {
+  display: flex;
+  /* width: 100%; */
+  flex-direction: column;
+}
+.itunesHeader {
+  display: flex;
+  height: 10%;
+  align-items: center;
+  gap: 10px;
+  margin: 1%;
+}
+
+.party {
+  box-shadow: 14px 16px 23px 2px #0000001c;
+  border: 3px solid #e3e3e3;
+  width: 50%;
+  align-self: center;
+  margin-top: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2% 0;
+  gap: 2em;
+  border-radius: 10px;
+}
+
+.party > img {
+  width: 7em;
+  height: 7em;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+
+.texts > h2,
+h3 {
+  margin-top: 1em;
+  text-align: center;
+}
+.texts > h3 {
+  color: #969696;
+}
+
+.backTohome {
+  background-color: #2e0052;
+  color: white;
+  padding: 1% 5%;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1000px) {
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .itunesHeader {
+    height: 5%;
+    background-color: #2e0052;
+    color: white;
+    margin: unset;
+    padding: 2%;
+  }
+  .itunesHeader > img {
+    object-fit: contain;
+    width: 50px;
+    aspect-ratio: 1/1;
+  }
+  .party {
+    width: 90%;
+    margin-top: 5em;
+    padding: 4% 2%;
+  }
+}
+
+/* Extra small devices (phones, 380px and down) */
+@media only screen and (max-width: 380px) {
+}
+
+@media only screen and (max-width: 280px) {
+}

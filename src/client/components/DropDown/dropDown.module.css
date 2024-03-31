@@ -7,6 +7,7 @@
 .dropdownButtons {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   justify-content: space-around;
   background-color: #d9d9d9;
   border: none;
@@ -14,6 +15,7 @@
   padding: 2px 5px;
   cursor: pointer;
   text-wrap: nowrap;
+  min-width: auto;
 }
 
 .sorterdesktop {
@@ -29,6 +31,8 @@
   text-wrap: nowrap;
   margin-left: auto;
   font-size: 12px;
+  min-width: auto;
+  flex-wrap: nowrap;
 }
 
 .sortermobile {
@@ -44,6 +48,8 @@
   text-wrap: nowrap;
   margin-left: auto;
   font-size: 12px;
+  min-width: auto;
+  flex-wrap: nowrap;
 }
 
 .dropDownMenu {

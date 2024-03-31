@@ -1,0 +1,92 @@
+.backBtn {
+  background-color: #2e0052;
+  color: white;
+  text-decoration: none;
+  padding: 10px 3%;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.toprow {
+  margin: 2% 7%;
+
+  /* background-color: salmon; */
+  /* display: flex; */
+  /* padding: 1%; */
+}
+
+.backarrow {
+  width: 12%;
+  border-radius: 50%;
+  display: none;
+  aspect-ratio: 1/1;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 1px 4px 0px #00000054;
+}
+
+.mobileHeader {
+  display: none;
+  background-color: #2e0052;
+  color: white;
+  gap: 1em;
+  padding: 1%;
+}
+
+.invoiceheader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: red; */
+  gap: 10px;
+}
+
+.inoiceHe {
+  margin: unset;
+}
+
+.invoiceImg {
+  object-fit: contain;
+  display: none;
+}
+
+.invoiceListContainer {
+  margin: 1% 5%;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1000px) {
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .backBtn {
+    display: none;
+  }
+  .backarrow {
+    display: flex;
+  }
+  .mobileHeader {
+    display: flex;
+  }
+  .invoiceImg {
+    display: unset;
+  }
+  .invoiceListContainer {
+    margin: unset;
+  }
+}
+
+/* Extra small devices (phones, 380px and down) */
+@media only screen and (max-width: 380px) {
+}
+
+@media only screen and (max-width: 280px) {
+}

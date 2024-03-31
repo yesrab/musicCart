@@ -1,6 +1,11 @@
 .ChekOutpage {
-  padding: 2%;
+  padding: 2% 10%;
   /* background-color: aqua; */
+}
+
+.loading {
+  text-align: center;
+  width: 100%;
 }
 
 .BkBtn {
@@ -11,6 +16,14 @@
   border-radius: 5px;
 }
 
+.backBtn {
+  display: none;
+  aspect-ratio: 1/1;
+  padding: 1%;
+  border-radius: 50%;
+  box-shadow: 0px 1px 4px 0px #00000054;
+}
+
 .heading {
   text-decoration: underline;
   text-align: center;
@@ -19,4 +32,45 @@
 .orderContainer {
   display: flex;
   margin-top: 1%;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1000px) {
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+  .ChekOutpage {
+    padding: 5% 1% 1% 0;
+  }
+
+  .orderContainer {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    /* background-color: yellow; */
+  }
+  .BkBtn {
+    display: none;
+  }
+  .backBtn {
+    display: unset;
+    margin-left: 1em;
+    width: 1em;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Extra small devices (phones, 380px and down) */
+@media only screen and (max-width: 380px) {
+}
+
+@media only screen and (max-width: 280px) {
 }

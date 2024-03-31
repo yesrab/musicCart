@@ -43,7 +43,11 @@ function Feedback({ setFeedback }) {
         </select>
         <p className={styles.error}>{errors.feedbackType?.message}</p>
         <h3>Feedback</h3>
-        <textarea {...register("feedbackDetails")} name='feedbackDetails' />
+        <textarea
+          placeholder='Type your feedback'
+          {...register("feedbackDetails")}
+          name='feedbackDetails'
+        />
         <p className={styles.error}>{errors.feedbackDetails?.message}</p>
         <button className={styles.FeedbackBtn}>Submit</button>
       </Form>

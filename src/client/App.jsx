@@ -20,7 +20,10 @@ import DetailsPage, {
 } from "./pages/details/DetailsPage";
 import CheckoutPage, {
   loader as checkoutLoader,
+  action as checkoutAction,
 } from "./pages/checkOut/CheckoutPage";
+import SuccessPage from "./pages/success/SuccessPage";
+import InvoicePage from "./pages/invoice/InvoicePage";
 
 function App() {
   const { loginState, dispatch } = useContext(LoginContext);
@@ -45,6 +48,9 @@ function App() {
             loader={({ request, params }) => {
               return checkoutLoader({ loginState, request, params });
             }}
+            action={({ request, params }) => {
+              return checkoutAction({ loginState, request, params });
+            }}
             path='/Checkout'
             element={<CheckoutPage />}
           />
@@ -53,6 +59,8 @@ function App() {
             loader={detailsLoader}
             element={<DetailsPage />}
           />
+          <Route path='success' element={<SuccessPage />} />
+          <Route path='invoice' element={<InvoicePage />} />
         </Route>
         <Route path='/account' element={<AccountLayout />}>
           <Route

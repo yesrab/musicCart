@@ -8,6 +8,7 @@ const {
   getCart,
   changeQuantity,
   getPurchaseData,
+  commitPurchase,
 } = require("../controllers/product");
 const { requireAuth } = require("../middleware/authMiddleware");
 router.route("/test").get(test);
@@ -18,5 +19,8 @@ router
   .route("/cart/additem")
   .put(requireAuth, addItemToCart)
   .patch(requireAuth, changeQuantity);
-router.route("/placeOrder").get(requireAuth, getPurchaseData);
+router
+  .route("/placeOrder")
+  .get(requireAuth, getPurchaseData)
+  .post(requireAuth, commitPurchase);
 module.exports = router;

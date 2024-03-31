@@ -1,6 +1,6 @@
 const products = require("../models/products");
 const cart = require("../models/cart");
-
+const invoice = require("../models/invoice");
 const test = (req, res) => {
   res.status(200).json({
     message: "hello from product route test",
@@ -238,6 +238,39 @@ const getPurchaseData = async (request, responce) => {
   });
 };
 
+const commitPurchase = async (request, responce) => {
+  const { customerAddress, paymentMethod } = request.body;
+  console.log(request.body);
+  const { id, name } = responce.locals.tokenData;
+  const userCart = await cart.findOne({
+    customerId: id,
+  });
+  if (!userCart) {
+    return responce.status(404).json({
+      status: "Error",
+      message: "User not Found",
+    });
+  }
+  if (userCart.cartItems.length == 0) {
+    return responce.status(404).json({
+      status: "Error",
+      message: "Empty cart!",
+    });
+  }
+  const { _id, customerId, cartItems } = userCart;
+  const newInvoice = await invoice.create({
+    customerId: id,
+    customerAddress,
+    paymentMethod,
+    purchasedItems: cartItems,
+  });
+  if (newInvoice) {
+    userCart.cartItems = [];
+    await userCart.save();
+  }
+  responce.json({ message: "Items purchased!", newInvoice, status: "success" });
+};
+
 module.exports = {
   test,
   getAllProducts,
@@ -246,4 +279,5 @@ module.exports = {
   getCart,
   changeQuantity,
   getPurchaseData,
+  commitPurchase,
 };

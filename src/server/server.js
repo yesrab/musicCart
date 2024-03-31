@@ -36,7 +36,9 @@ app.use("/api/v1/account/", accoutrRouter);
 //products route import
 const productRouter = require("./routes/product");
 app.use("/api/v1/products", productRouter);
-
+//invoice route import
+const invoiceRouter = require("./routes/invoice");
+app.use("/api/v1/invoices/", invoiceRouter);
 //globalError handler middleware
 const gloablErrorHandler = require("./middleware/globalErrorHandler");
 app.use(gloablErrorHandler);

@@ -16,6 +16,14 @@
   color: #000;
 }
 
+.invoiceLinks {
+  display: flex;
+  gap: 1em;
+}
+.links {
+  color: black;
+  text-decoration: none;
+}
 .accountOptions {
   margin-left: auto;
   /* background-color: #7286b4; */

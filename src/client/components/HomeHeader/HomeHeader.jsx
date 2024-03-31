@@ -13,10 +13,11 @@ function HomeHeader({ cart }) {
   // console.log(location.search);
   function getPathString(pathname) {
     const pathMap = {
-      "/": "Home",
+      "/": `Home`,
       "/View%20Cart": "Home/View Cart",
       "/Checkout": "Home/Checkout",
       "/details": "Home/name",
+      "/invoice": "Home/Invoices",
     };
     if (pathname.includes("/details")) {
       const paramValue = location.search.split("=")[1];
@@ -29,6 +30,9 @@ function HomeHeader({ cart }) {
     setLocationName(getPathString(location.pathname));
   }, [location.pathname]);
   const [isOpen, setIsOpen] = useState(false);
+  if (location.pathname === "/success") {
+    return <></>;
+  }
   return (
     <div className={styles.brandingContainer}>
       <img className={styles.logo} src={itunes} alt='Musicart' />
@@ -39,7 +43,16 @@ function HomeHeader({ cart }) {
         Musicart
       </h1>
       <div className={styles.breadCrumb}>
-        <p>{locatonName}</p>
+        {location.pathname === "/" ? (
+          <div className={styles.invoiceLinks}>
+            <p>Home</p>{" "}
+            <Link className={styles.links} to='/invoice'>
+              Invoice
+            </Link>
+          </div>
+        ) : (
+          <p>{locatonName}</p>
+        )}
       </div>
       {loginState.login ? (
         <div className={styles.accountOptions}>
