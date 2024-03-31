@@ -20,7 +20,8 @@
 }
 
 .listViewImageContainer {
-  width: 20%;
+  min-width: 25%;
+  max-width: 25%;
   position: relative;
   background-color: #0066ff2b;
   padding: 1%;
