@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Suspense } from "react";
 import {
+  Await,
   Link,
   ScrollRestoration,
+  defer,
   useLoaderData,
   useNavigate,
   useRevalidator,
@@ -14,6 +16,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useMediaQuery } from "@react-hooks-hub/use-media-query";
 import { LoginContext } from "../../context/loginContext";
 import toast from "react-hot-toast";
+import backArrow from "../../assets/backArrow.svg";
 export const loader = async ({ request, params }) => {
   console.log(params.productId);
   const id = params.productId;
@@ -21,16 +24,13 @@ export const loader = async ({ request, params }) => {
   const productRequest = new Request(getProductURL, {
     method: "GET",
   });
-  const product = await fetchUtils(productRequest);
+  const product = fetchUtils(productRequest);
 
-  if (product.status === "success") {
-    return product;
-  }
-  return null;
+  return defer({ product });
 };
 
 function DetailsPage() {
-  const productData = useLoaderData();
+  const { product } = useLoaderData();
   const { loginState, dispatch } = useContext(LoginContext);
   let revalidator = useRevalidator();
 
@@ -86,81 +86,109 @@ function DetailsPage() {
       <Link className={styles.backToBtn} to='/'>
         Back to products
       </Link>
+      <Link className={styles.backArrow} to='/'>
+        <img src={backArrow} />
+      </Link>
       <br />
-      <button className={styles.detailsButonsz}>Buy Now</button>
-      <h4 className={styles.productDescription}>
-        {productData?.product.description +
-          " " +
-          "(" +
-          productData?.product.color +
-          ")"}
-      </h4>
-      <div className={styles.productDataContainer}>
-        <div className={styles.imagesContainer}>
-          <Carousel
-            // width={device == "desktop" ? "65%" : "100%"}
-            height='60%'
-            showThumbs={device == "desktop" ? true : false}
-            showStatus={false}
-            emulateTouch>
-            {productData.product.images.length &&
-              productData.product.images.map((image, key) => {
-                return (
-                  <div
-                    onClick={() => {
-                      switchImage(key);
-                    }}
-                    className={styles.carouselDivs}
-                    key={key}>
-                    <img className={styles.listImages} src={image.altUrl} />
+      <Suspense fallback={<h3>Loading...</h3>}>
+        <Await resolve={product}>
+          {(productData) => {
+            return (
+              <>
+                <button
+                  onClick={() => {
+                    addtoCart(productData.product);
+                    navigate("/View Cart");
+                  }}
+                  className={styles.detailsButonsz}>
+                  Buy Now
+                </button>
+                <h4 className={styles.productDescription}>
+                  {productData?.product.description +
+                    " " +
+                    "(" +
+                    productData?.product.color +
+                    ")"}
+                </h4>
+                <div className={styles.productDataContainer}>
+                  <div className={styles.imagesContainer}>
+                    <Carousel
+                      // width={device == "desktop" ? "65%" : "100%"}
+                      height='60%'
+                      showThumbs={device == "desktop" ? true : false}
+                      showStatus={false}
+                      emulateTouch>
+                      {productData.product.images.length &&
+                        productData.product.images.map((image, key) => {
+                          return (
+                            <div
+                              onClick={() => {
+                                switchImage(key);
+                              }}
+                              className={styles.carouselDivs}
+                              key={key}>
+                              <img
+                                className={styles.listImages}
+                                src={image.altUrl}
+                              />
+                            </div>
+                          );
+                        })}
+                    </Carousel>
                   </div>
-                );
-              })}
-          </Carousel>
-        </div>
-        <div className={styles.DetailsContaier}>
-          <h1>{productData.product.name}</h1>
-          <div className={styles.ratingBox}>
-            {Array.from({ length: productData.product.rating }).map(
-              (_, index) => (
-                <img key={index} src={star} alt='stars' />
-              )
-            )}{" "}
-            <p>(50 Customer reviews)</p>
-          </div>
-          <h3>Price-₹ {productData.product.price} </h3>
-          <p>{`${productData.product.color} | ${productData.product.productType} headphone`}</p>
-          <p>About This item</p>
-          <ul className={styles.aboutList}>
-            {productData.product.details.length &&
-              productData.product.details.map((text, key) => {
-                return <li key={key}>{text}</li>;
-              })}
-          </ul>
-          <p>
-            <span className={styles.bldFont}>Available</span> -
-            {productData.product.avaliable ? " In stock" : " Out of stock!"}
-          </p>
-          <p>
-            <span className={styles.bldFont}>Brand</span> -{" "}
-            {productData.product.brand}
-          </p>
-          <button
-            onClick={() => {
-              addtoCart(productData.product);
-            }}
-            className={styles.detailsButonsa}>
-            Add to cart
-          </button>
-          <button
-            onClick={() => {
-              navigate("/View Cart");
-            }}
-            className={styles.detailsButons}>
-            Buy Now
-          </button>
-        </div>
-      </div>
+                  <div className={styles.DetailsContaier}>
+                    <h1>{productData.product.name}</h1>
+                    <div className={styles.ratingBox}>
+                      {Array.from({ length: productData.product.rating }).map(
+                        (_, index) => (
+                          <img key={index} src={star} alt='stars' />
+                        )
+                      )}{" "}
+                      <p>(50 Customer reviews)</p>
+                    </div>
+                    <h3 className={styles.priceLable}>
+                      Price-₹ {productData.product.price}{" "}
+                    </h3>
+                    <p>{`${productData.product.color} | ${productData.product.productType} headphone`}</p>
+                    <p>About This item</p>
+                    <ul className={styles.aboutList}>
+                      {productData.product.details.length &&
+                        productData.product.details.map((text, key) => {
+                          return <li key={key}>{text}</li>;
+                        })}
+                    </ul>
+                    <p>
+                      <span className={styles.bldFont}>Available</span> -
+                      {productData.product.avaliable
+                        ? " In stock"
+                        : " Out of stock!"}
+                    </p>
+                    <p>
+                      <span className={styles.bldFont}>Brand</span> -{" "}
+                      {productData.product.brand}
+                    </p>
+                    <button
+                      onClick={() => {
+                        addtoCart(productData.product);
+                      }}
+                      className={styles.detailsButonsa}>
+                      Add to cart
+                    </button>
+                    <button
+                      onClick={() => {
+                        addtoCart(productData.product);
+                        navigate("/View Cart");
+                      }}
+                      className={styles.detailsButons}>
+                      Buy Now
+                    </button>
+                  </div>
+                </div>
+              </>
+            );
+          }}
+        </Await>
+      </Suspense>
     </div>
   );
 }

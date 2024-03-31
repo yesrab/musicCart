@@ -1,7 +1,7 @@
 .detailsContainer {
   /* border: 2px solid pink; */
   /* min-height: 700px; */
-  padding: 2%;
+  padding: 2% 6%;
 }
 
 .backToBtn {
@@ -11,6 +11,15 @@
   border-radius: 8px;
   text-decoration: none;
   padding: 0.5em 2em;
+}
+
+.backArrow {
+  display: none;
+  width: 2.4em;
+  padding: 1%;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  box-shadow: 0px 1px 4px 0px #00000054;
 }
 
 .productDescription {
@@ -98,6 +107,11 @@
   align-items: center;
 }
 
+.priceLable {
+  text-align: start;
+  margin-top: unset;
+}
+
 .aboutList {
   padding-left: 5%;
 }
@@ -110,21 +124,21 @@
 }
 
 .detailsButons {
-  width: 40%;
+  width: 20em;
   background-color: #ffb800;
-  padding: 1%;
+  padding: 2% 0;
   border: none;
-  border-radius: 20px;
+  border-radius: 15px;
   cursor: pointer;
   font-weight: 600;
   font-family: "Roboto", sans-serif;
 }
 .detailsButonsa {
-  width: 40%;
+  width: 20em;
   background-color: #ffd600;
-  padding: 1%;
+  padding: 2% 0;
   border: none;
-  border-radius: 20px;
+  border-radius: 15px;
   cursor: pointer;
   font-weight: 600;
   font-family: "Roboto", sans-serif;
@@ -182,6 +196,9 @@
   }
   .carouselDivs {
     height: 400px;
+  }
+  .backArrow {
+    display: flex;
   }
 }
 
