@@ -29,7 +29,7 @@
   background-color: #2e0052;
   color: white;
   gap: 1em;
-  padding: 1%;
+  padding: 0 1% 1% 1%;
 }
 
 .invoiceheader {
@@ -52,6 +52,180 @@
 .invoiceListContainer {
   margin: 1% 5%;
 }
+
+.InvoiceDetailsHeader {
+  margin: 3% 5% 0% 5%;
+  /* background-color: red; */
+}
+.backButton {
+  background-color: #2e0052;
+  color: white;
+  text-decoration: none;
+  padding: 10px 3%;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.mobileBackButton {
+  display: none;
+}
+
+.InvoiceDetailsHeaderLeft {
+  text-decoration: underline;
+}
+
+/* sasdasd */
+.formContainer {
+  width: 70%;
+  /* min-height: 60vh; */
+  padding-left: 4%;
+  /* background-color: bisque; */
+}
+.formObjs {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 2px solid #e1e1e1;
+  margin-bottom: 1%;
+  padding: 1%;
+}
+.formLabels {
+  color: #b52b00;
+  font-weight: 500;
+}
+.error {
+  color: red;
+  font-size: 11px;
+}
+
+.addressblock {
+  font-family: "Roboto", sans-serif;
+  resize: none;
+  border: 1px solid #919191;
+  border-radius: 4px;
+  margin-top: 1%;
+  height: 5em;
+  width: 20em;
+}
+
+.modeOfPay {
+  height: 2em;
+  width: 20em;
+  border: 1px solid #919191;
+  border-radius: 4px;
+}
+
+.orderSummery {
+  width: 20em;
+  /* background-color: aqua; */
+}
+
+.orderSummeryimages {
+  width: 30%;
+  margin: 1%;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.submitBox {
+  border: 2px solid #e1e1e1;
+  border-radius: 8px;
+  margin-top: 10px;
+  display: flex;
+  padding: 1%;
+  justify-content: space-evenly;
+}
+
+.submitBtn {
+  background-color: #ffd600;
+  padding: 0 3%;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.detaiFont {
+  color: #797979;
+}
+
+.tallyContainer {
+  border: 2px solid #e1e1e1;
+  /* background-color: antiquewhite; */
+  width: 22%;
+  height: 14em;
+  margin: 1%;
+  border-radius: 8px;
+  padding: 0 1%;
+}
+
+.odrContiner {
+  /* background-color: #919191; */
+  width: 100%;
+  border-bottom: 2px solid #e1e1e1;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.odrContiner > h3 {
+  text-align: start;
+}
+
+.ordBoxSubmit {
+  width: 94%;
+  margin: 3%;
+  height: 2em;
+  background-color: #ffd600;
+  padding: 0 3%;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1.2em;
+}
+
+.tnc {
+  font-size: 11px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.tallyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  color: #797979;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.tallyChildren {
+  margin-left: auto;
+}
+
+.total {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  color: #b52b00;
+  font-weight: 500;
+}
+
+.modeOfPay {
+  border: 1px solid #919191;
+  color: #919191;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+}
+
+.InvoiceDetailsMain {
+  display: flex;
+}
+
+/* asdasdasd */
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1000px) {
@@ -81,6 +255,49 @@
   }
   .invoiceListContainer {
     margin: unset;
+  }
+  .InvoiceDetailsMain {
+    flex-direction: column;
+  }
+  .cartProductsList {
+    border: none;
+  }
+  .cartPriceTotal {
+    border: none;
+    display: none;
+  }
+  .tallyContainer {
+    border: none;
+  }
+  .quantity {
+    display: none;
+  }
+  .cartProduct {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #dbdbdb;
+    margin-bottom: 5px;
+    border-radius: 8px;
+  }
+  .priceBox {
+    display: none;
+  }
+  .productimage {
+    border: none;
+  }
+  .formContainer {
+    width: 100%;
+  }
+  .formObjs {
+    flex-direction: column;
+  }
+  .modeOfPay {
+    width: auto;
+    max-width: 70%;
+  }
+  .tallyContainer {
+    width: 100%;
+    padding: 1% 5%;
   }
 }
 

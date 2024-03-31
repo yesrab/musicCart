@@ -37,6 +37,9 @@
   grid-template-rows: repeat(7, 1fr);
   height: 20em;
 }
+.tallyContainer > h3 {
+  margin-top: 0px;
+}
 .numerics {
   margin-left: auto;
 }

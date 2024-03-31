@@ -84,12 +84,19 @@
   padding: 0 1%;
 }
 
+.tallyContainer > h3 {
+  margin-top: 0px;
+}
+
 .odrContiner {
   /* background-color: #919191; */
   width: 100%;
   border-bottom: 2px solid #e1e1e1;
   margin-top: 2%;
   margin-bottom: 2%;
+}
+.odrContiner > h3 {
+  text-align: start;
 }
 
 .ordBoxSubmit {

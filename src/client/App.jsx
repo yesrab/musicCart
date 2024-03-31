@@ -23,8 +23,12 @@ import CheckoutPage, {
   action as checkoutAction,
 } from "./pages/checkOut/CheckoutPage";
 import SuccessPage from "./pages/success/SuccessPage";
-import InvoicePage from "./pages/invoice/InvoicePage";
-
+import InvoicePage, {
+  loader as invoiceLoader,
+} from "./pages/invoice/InvoicePage";
+import InvoiceDetails, {
+  loader as invoiceDetailsLoader,
+} from "./pages/invoice/InvoiceDetails";
 function App() {
   const { loginState, dispatch } = useContext(LoginContext);
   const { cartState, dispatch: cartDispatch } = useContext(CartContext);
@@ -60,7 +64,20 @@ function App() {
             element={<DetailsPage />}
           />
           <Route path='success' element={<SuccessPage />} />
-          <Route path='invoice' element={<InvoicePage />} />
+          <Route
+            loader={({ request, params }) => {
+              return invoiceLoader({ loginState, request, params });
+            }}
+            path='invoice'
+            element={<InvoicePage />}
+          />
+          <Route
+            loader={({ request, params }) => {
+              return invoiceDetailsLoader({ loginState, request, params });
+            }}
+            path='invoice/:invoiceId'
+            element={<InvoiceDetails />}
+          />
         </Route>
         <Route path='/account' element={<AccountLayout />}>
           <Route

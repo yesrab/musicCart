@@ -43,7 +43,7 @@ function Footer({ cart: cartCount }) {
                 className={isActive ? styles.possitionIndicator : styles.blank}
               />
               <div className={styles.navIconsContainer}>
-                <div className={styles.cartCount}>{cartCount}</div>
+                <div className={styles.cartCount}>{cartCount || 0}</div>
                 <img className={styles.navIcons} src={cart} />
                 Cart
               </div>

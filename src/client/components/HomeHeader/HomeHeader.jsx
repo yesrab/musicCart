@@ -24,6 +24,9 @@ function HomeHeader({ cart }) {
       const formattedValue = decodeURIComponent(paramValue).replace(/[%+]/g, " ");
       return `Home/${formattedValue}`;
     }
+    if (pathname.includes("/invoice")) {
+      return "Home/Invoices";
+    }
     return pathMap[pathname] || pathname;
   }
   useEffect(() => {

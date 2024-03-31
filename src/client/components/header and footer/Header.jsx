@@ -16,7 +16,7 @@ function Header({ searchProduct, setSearchProduct }) {
       nav("/");
     }
   };
-  if (location.pathname === "/success" || location.pathname === "/invoice") {
+  if (location.pathname === "/success") {
     return <></>;
   }
   return (
@@ -44,18 +44,20 @@ function Header({ searchProduct, setSearchProduct }) {
           </span>
         )}
       </div>
-      <div className={styles.searchBox}>
-        <img className={styles.search} src={searchIcon} />
-        <input
-          value={searchProduct}
-          onChange={(e) => {
-            setSearchProduct(e.target.value);
-          }}
-          onMouseDown={backToHome}
-          type='text'
-          placeholder='Search Musicart'
-        />
-      </div>
+      {location.pathname != "/invoice" ? (
+        <div className={styles.searchBox}>
+          <img className={styles.search} src={searchIcon} />
+          <input
+            value={searchProduct}
+            onChange={(e) => {
+              setSearchProduct(e.target.value);
+            }}
+            onMouseDown={backToHome}
+            type='text'
+            placeholder='Search Musicart'
+          />
+        </div>
+      ) : null}
     </header>
   );
 }

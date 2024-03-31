@@ -1,0 +1,49 @@
+.InvoiceList {
+  display: flex;
+  border-bottom: 2.87px solid #e1e1e1;
+  padding: 1%;
+  gap: 20px;
+  align-items: center;
+}
+.invoiceImage {
+  aspect-ratio: 1/1;
+  width: 5%;
+  object-fit: contain;
+  margin-left: 10px;
+}
+.invoiceLinks {
+  margin-left: auto;
+  margin-right: 10px;
+  text-decoration: none;
+  background-color: #2e0052;
+  color: white;
+  padding: 1% 4%;
+  border-radius: 8px;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1000px) {
+}
+
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+  .InvoiceList {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Extra small devices (phones, 380px and down) */
+@media only screen and (max-width: 380px) {
+}
+
+@media only screen and (max-width: 280px) {
+}
