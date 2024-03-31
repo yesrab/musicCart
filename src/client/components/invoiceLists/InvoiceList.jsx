@@ -6,7 +6,7 @@ function InvoiceList({ invoice, name }) {
   return (
     <div className={styles.InvoiceList}>
       <img className={styles.invoiceImage} src={greyInvoice} alt='invoice icon' />
-      <div>
+      <div className={styles.address}>
         <p>{name}</p>
         <p>{invoice.customerAddress}</p>
       </div>

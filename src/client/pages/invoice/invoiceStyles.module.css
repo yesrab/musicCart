@@ -153,6 +153,11 @@
   color: #797979;
 }
 
+.address {
+  max-width: 50%;
+  text-wrap: balance;
+}
+
 .tallyContainer {
   border: 2px solid #e1e1e1;
   /* background-color: antiquewhite; */

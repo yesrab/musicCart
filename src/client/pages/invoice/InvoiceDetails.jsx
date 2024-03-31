@@ -52,7 +52,9 @@ function InvoiceDetails() {
                       </div>
                       <div className={styles.detaiFont}>
                         <p>{responce?.name}</p>
-                        <p>{responce?.oneInvoice?.customerAddress}</p>
+                        <p className={styles.address}>
+                          {responce?.oneInvoice?.customerAddress}
+                        </p>
                       </div>
                     </div>
                     <div className={styles.formObjs}>

@@ -46,7 +46,7 @@ function HomeHeader({ cart }) {
         Musicart
       </h1>
       <div className={styles.breadCrumb}>
-        {location.pathname === "/" ? (
+        {location.pathname === "/" && loginState.login ? (
           <div className={styles.invoiceLinks}>
             <p>Home</p>{" "}
             <Link className={styles.links} to='/invoice'>

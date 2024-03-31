@@ -7,7 +7,8 @@
 }
 .invoiceImage {
   aspect-ratio: 1/1;
-  width: 5%;
+  min-width: 5%;
+  max-width: 6%;
   object-fit: contain;
   margin-left: 10px;
 }
@@ -19,6 +20,13 @@
   color: white;
   padding: 1% 4%;
   border-radius: 8px;
+  max-width: 27%;
+  text-align: center;
+}
+
+.address {
+  max-width: 15%;
+  text-wrap: balance;
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -34,6 +42,14 @@
   .InvoiceList {
     margin-top: 2em;
     margin-bottom: 2em;
+  }
+  .invoiceLinks {
+    min-width: 35%;
+    max-width: 40%;
+  }
+  .invoiceImage {
+    min-width: 7%;
+    max-width: 8%;
   }
 }
 
