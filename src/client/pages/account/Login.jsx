@@ -28,7 +28,7 @@ export const action = async ({ request, params, dispatch }) => {
       type: "LOGIN",
       payload: { token, id: _id, name: name },
     });
-    return redirectDocument("/");
+    return redirect("/");
   }
   return null;
 };
