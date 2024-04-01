@@ -57,17 +57,18 @@ function CartItems({ product }) {
   return (
     <>
       <div className={styles.cartProduct}>
-        <img className={styles.productimage} src={product.image} />
+        <img className={styles.productimage} src={product?.image} />
         <div>
           <h3 className={styles.title}>{product.name}</h3>
-          <p>Colour : {product.color}</p>
+          <p>Colour : {product?.color}</p>
           <p>In Stock</p>
         </div>
-        <div className={styles.priceBox}>
+        <div className={` ${styles.dummyBox} `}></div>
+        <div className={` ${styles.priceBox} ${styles.mobilePriceBox} `}>
           <h3 className={styles.title}>Price</h3>
-          <p>₹{product.productPrice}</p>
+          <p>₹{product?.productPrice}</p>
         </div>
-        <div className={styles.priceBox}>
+        <div className={` ${styles.priceBox} ${styles.mobilePriceBox} `}>
           <label htmlFor='quantity'>
             <h3 className={styles.title}>Quantity</h3>
           </label>
@@ -90,8 +91,8 @@ function CartItems({ product }) {
           </select>
         </div>
         <div className={styles.priceBox}>
-          <h3 className={styles.title}>Total</h3>
-          <p>₹{product.subTotal}</p>
+          <h3 className={styles?.title}>Total</h3>
+          <p>₹{product?.subTotal}</p>
         </div>
       </div>
     </>

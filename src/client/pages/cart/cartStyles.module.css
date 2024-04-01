@@ -102,6 +102,11 @@
   .backBtn {
     display: flex;
   }
+  .cartProductsList {
+    background-color: #dbdbdb;
+    padding: 1%;
+    border-radius: 8px;
+  }
 }
 
 /* Extra small devices (phones, 380px and down) */

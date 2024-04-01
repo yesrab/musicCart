@@ -78,7 +78,6 @@ function DetailsPage() {
       }
       revalidator.revalidate();
     }
-    console.log(product);
   };
   return (
     <div className={styles.detailsContainer}>

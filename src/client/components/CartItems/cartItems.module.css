@@ -3,6 +3,25 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
+
+.seperator {
+  background-color: black;
+  height: 2px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.mobileOrderBtn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 3%;
+  font-size: 1.2em;
+  background-color: #ffd600;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
 .productimage {
   width: 100px;
   object-fit: contain;
@@ -16,6 +35,8 @@
 }
 .title {
   margin-bottom: 5px;
+  margin-top: 10px;
+  text-align: unset;
 }
 
 .cartPriceTotal {
@@ -37,9 +58,7 @@
   grid-template-rows: repeat(7, 1fr);
   height: 20em;
 }
-.tallyContainer > h3 {
-  margin-top: 0px;
-}
+
 .numerics {
   margin-left: auto;
 }
@@ -54,6 +73,13 @@
   margin-top: 10px;
 }
 
+.priceBox > h3 {
+  margin-top: none;
+}
+
+.dummyBox {
+  display: none;
+}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1000px) {
 }
@@ -64,12 +90,9 @@
 
 /* Medium devices (landscape tablets, 768px and down) */
 @media only screen and (max-width: 768px) {
-}
-
-/* Small devices (portrait tablets and large phones, 600px and down) */
-@media only screen and (max-width: 600px) {
   .cartProductsList {
     border: none;
+    background-color: #dbdbdb;
   }
   .cartPriceTotal {
     border: none;
@@ -77,6 +100,10 @@
   }
   .tallyContainer {
     border: none;
+  }
+  .tallyContainer > h3 {
+    margin-top: 0;
+    text-align: unset;
   }
   .quantity {
     display: none;
@@ -89,10 +116,79 @@
     border-radius: 8px;
   }
   .priceBox {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .priceBox > h3 {
+    margin: 0;
   }
   .productimage {
     border: none;
+  }
+
+  .mobilePriceBox {
+    display: none;
+  }
+  .dummyBox {
+    display: unset;
+  }
+  .bar {
+    background-color: black;
+    width: 95vw;
+    height: 2px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .cartProductsList {
+    border: none;
+    background-color: #dbdbdb;
+  }
+  .cartPriceTotal {
+    border: none;
+    display: none;
+  }
+  .tallyContainer {
+    border: none;
+  }
+  .tallyContainer > h3 {
+    margin-top: 0;
+    text-align: unset;
+  }
+  .quantity {
+    display: none;
+  }
+  .cartProduct {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #dbdbdb;
+    margin-bottom: 5px;
+    border-radius: 8px;
+  }
+  .priceBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .priceBox > h3 {
+    margin: 0;
+  }
+  .productimage {
+    border: none;
+  }
+
+  .mobilePriceBox {
+    display: none;
+  }
+  .dummyBox {
+    display: unset;
+  }
+  .bar {
+    background-color: black;
+    width: 95vw;
+    height: 2px;
   }
 }
 
