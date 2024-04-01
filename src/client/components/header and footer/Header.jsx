@@ -6,10 +6,11 @@ import searchIcon from "../../assets/search.svg";
 import { LoginContext } from "../../context/loginContext";
 function Header({ searchProduct, setSearchProduct }) {
   const { loginState, dispatch } = useContext(LoginContext);
+  const nav = useNavigate();
   const logoutFunction = () => {
     dispatch({ type: "LOGOUT" });
+    nav("/", { replace: true });
   };
-  const nav = useNavigate();
   const location = useLocation();
   const backToHome = () => {
     if (location.pathname != "/") {
