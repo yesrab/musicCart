@@ -22,7 +22,7 @@ export const action = async ({ request, params, dispatch }) => {
   }
   if (submitedResponce.status === "success") {
     toast.success(`${submitedResponce.message} now you can login`);
-    console.log(submitedResponce);
+    // console.log(submitedResponce);
     const { _id, name, token } = submitedResponce;
     dispatch({
       type: "LOGIN",

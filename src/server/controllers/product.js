@@ -93,7 +93,7 @@ const getAllProducts = async (request, responce) => {
 
 const getProduct = async (request, responce) => {
   const { productID } = request.params;
-  console.log(productID);
+  // console.log(productID);
   const product = await products.findById(productID);
   if (product) {
     return responce.status(200).json({
@@ -240,7 +240,7 @@ const getPurchaseData = async (request, responce) => {
 
 const commitPurchase = async (request, responce) => {
   const { customerAddress, paymentMethod } = request.body;
-  console.log(request.body);
+  // console.log(request.body);
   const { id, name } = responce.locals.tokenData;
   const userCart = await cart.findOne({
     customerId: id,

@@ -4,7 +4,7 @@ const cartError = require("../errors/cartError");
 const feedBackError = require("../errors/feedbackError");
 const invoiceError = require("../errors/invoiceError");
 const globalErrorHandler = (error, request, response, next) => {
-  console.log("message from global handler", error);
+  // console.log("message from global handler", error);
   if (error.code === 11000) {
     return accountError(error, request, response);
   }
@@ -12,7 +12,6 @@ const globalErrorHandler = (error, request, response, next) => {
     error instanceof mongoose.Error.ValidationError &&
     error._message === "Account validation failed"
   ) {
-    console.log("Validation error");
     return accountError(error, request, response);
   }
   if (

@@ -13,7 +13,7 @@ const generateToken = (idObj) => {
 };
 
 const createAccount = async (request, responce) => {
-  console.log("hit account creation route");
+  // console.log("hit account creation route");
   const { password, mobileNumber, email, name } = request.body;
   const savedAccount = await account.create({
     name,
