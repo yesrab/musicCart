@@ -56,7 +56,11 @@ function Products({ product, gridView }) {
         className={` ${
           gridView ? styles.imageContainer : styles.listViewImageContainer
         } `}>
-        <img className={styles.productImage} src={product.images[0].altUrl} />
+        <img
+          className={styles.productImage}
+          alt={product?.images[0]?.name}
+          src={product?.images[0]?.altUrl}
+        />
         <button
           onClick={(event) => {
             handleAddCart(event, product);
