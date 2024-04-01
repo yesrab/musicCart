@@ -1,6 +1,7 @@
 .SnScontainer {
   display: flex;
   flex-direction: column;
+  min-width: 100vw;
 }
 .searchBoxContainer {
   width: 80%;
@@ -54,7 +55,7 @@
 
 .sortBox {
   margin: 1% 0;
-  width: 100%;
+  min-width: 100vw;
   padding: 0% 10%;
   overflow-y: clip;
   overflow-x: auto;
@@ -63,7 +64,7 @@
 .sortOptionsContainer {
   display: flex;
   gap: 1em;
-  width: 100%;
+  min-width: 70vw;
 }
 
 .dropdownButtons {
@@ -103,6 +104,10 @@
   .searchBoxContainer {
     display: none;
   }
+  .sortBox {
+    padding: unset;
+    flex: 1;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and down) */
@@ -113,7 +118,7 @@
   .sortBox {
     width: 100%;
     margin: 1% 0;
-    padding: 0 5%;
+    padding: 0 0 0 2%;
   }
   .unfilled {
     display: none;

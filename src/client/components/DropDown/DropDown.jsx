@@ -111,7 +111,11 @@ export default function DropDown({ name, options, type }) {
             ? styles.sortermobile
             : styles.dropdownButtons
         } `}>
-        {type?.includes("sort") ? name + " " + selectedItemLabel : name}
+        {type?.includes("sort")
+          ? name + " " + selectedItemLabel
+          : selectedItemLabel === "Featured"
+          ? name
+          : selectedItemLabel}
         <span className='material-symbols-outlined'>expand_more</span>
       </div>
       {isOpen && (

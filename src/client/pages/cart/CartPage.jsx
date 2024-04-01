@@ -26,7 +26,7 @@ export const loader = async ({ request, params, loginState }) => {
 
 function CartPage() {
   const { responce } = useLoaderData();
-  // console.log(responce);
+  console.log(responce);
   return (
     <div className={styles.mainCartPage}>
       <Link className={styles.purpleBtn} to={".."}>

@@ -15,7 +15,11 @@
   padding: 2px 5px;
   cursor: pointer;
   text-wrap: nowrap;
-  min-width: auto;
+  flex-basis: content;
+}
+
+.dropdownButtons > span {
+  margin-left: auto;
 }
 
 .sorterdesktop {
@@ -30,7 +34,7 @@
   cursor: pointer;
   text-wrap: nowrap;
   margin-left: auto;
-  font-size: 12px;
+  font-size: 10px;
   min-width: auto;
   flex-wrap: nowrap;
 }
@@ -55,8 +59,6 @@
 .dropDownMenu {
   width: 100px;
   height: 100px;
-  /* background-color: #eee; */
-  /* position: absolute; */
   top: 10px;
 }
 
@@ -86,6 +88,21 @@
 
 /* Medium devices (landscape tablets, 768px and down) */
 @media only screen and (max-width: 768px) {
+  .dropdownButtons {
+    flex-shrink: 1;
+    min-width: 180px;
+    max-width: 190px;
+  }
+  .dropdownButtons > span {
+    margin: unset;
+  }
+  .sortermobile {
+    margin-left: unset;
+  }
+  .sorterdesktop {
+    display: none;
+    margin: unset;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and down) */
