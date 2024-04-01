@@ -1,11 +1,32 @@
-import React, { Suspense, useState } from "react";
+import React, {Suspense, useState} from "react";
 import OfferBanner from "../../components/HomeHeader/OfferBanner";
 import styles from "./HomeStyles.module.css";
 import SearchnSort from "../../components/SearchnSort/SearchnSort";
-import { Await, useOutletContext } from "react-router-dom";
+import {Await, useOutletContext} from "react-router-dom";
 import Products from "../../components/productsCard/Products";
 import feedbackImg from "../../assets/feedback.svg";
 import Feedback from "../../components/feedback/Feedback";
+import useOutsideClick from "../../hooks/useOutsideClick";
+import fetchUtils from "../../libs/fetchUtils.js";
+import toast from "react-hot-toast";
+
+export const action = async ({request, params}) => {
+  const feedBackURl = "/api/v1/feedback/submitFeedback";
+  const data = await request.json()
+  const feedbackRequest = new Request(feedBackURl, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  const responce = await fetchUtils(feedbackRequest)
+  if (responce.status === 'success') {
+    toast.success("feedback submitted!")
+  }
+  return null;
+};
+
 function Home() {
   const [searchProduct, setSearchProduct, allProducts, products] =
     useOutletContext();
@@ -18,9 +39,14 @@ function Home() {
       setGridView(false);
     }
   };
+
+  const closeFeedBack = () => {
+    setFeedback(false);
+  };
+  const menuRef = useOutsideClick(closeFeedBack);
   return (
     <main className={styles.HomepageMain}>
-      <OfferBanner />
+      <OfferBanner/>
       <SearchnSort
         gridView={gridView}
         setView={setView}
@@ -37,7 +63,7 @@ function Home() {
                 }`}>
                 {allProducts?.allProducts?.map((item, key) => {
                   return (
-                    <Products gridView={gridView} product={item} key={key} />
+                    <Products gridView={gridView} product={item} key={key}/>
                   );
                 })}
               </div>
@@ -46,15 +72,16 @@ function Home() {
         </Await>
       </Suspense>
       <div className={styles.feedbackContainer}>
-        {feedback ? <Feedback setFeedback={setFeedback} /> : null}
-        <br />
+        {feedback ? (
+          <Feedback menuRef={menuRef} closeFeedBack={closeFeedBack}/>
+        ) : null}
+        <br/>
         <button
-          onMouseDown={(e) => {
-            e.preventDefault(); // Prevents the button from receiving focus
+          onClick={() => {
             setFeedback(true);
           }}
           className={styles.feedbackbtn}>
-          <img src={feedbackImg} alt='feedback' />
+          <img src={feedbackImg} alt='feedback'/>
         </button>
       </div>
     </main>

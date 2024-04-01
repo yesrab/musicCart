@@ -104,10 +104,10 @@ function DetailsPage() {
                   Buy Now
                 </button>
                 <h4 className={styles.productDescription}>
-                  {productData?.product.description +
+                  {productData?.product?.description +
                     " " +
                     "(" +
-                    productData?.product.color +
+                    productData?.product?.color +
                     ")"}
                 </h4>
                 <div className={styles.productDataContainer}>
@@ -118,8 +118,8 @@ function DetailsPage() {
                       showThumbs={device == "desktop" ? true : false}
                       showStatus={false}
                       emulateTouch>
-                      {productData.product.images.length &&
-                        productData.product.images.map((image, key) => {
+                      {productData?.product?.images?.length &&
+                        productData?.product?.images?.map((image, key) => {
                           return (
                             <div
                               onClick={() => {
@@ -129,7 +129,7 @@ function DetailsPage() {
                               key={key}>
                               <img
                                 className={styles.listImages}
-                                src={image.altUrl}
+                                src={image?.altUrl}
                               />
                             </div>
                           );
@@ -137,9 +137,9 @@ function DetailsPage() {
                     </Carousel>
                   </div>
                   <div className={styles.DetailsContaier}>
-                    <h1>{productData.product.name}</h1>
+                    <h1>{productData?.product?.name}</h1>
                     <div className={styles.ratingBox}>
-                      {Array.from({ length: productData.product.rating }).map(
+                      {Array.from({ length: productData?.product?.rating }).map(
                         (_, index) => (
                           <img key={index} src={star} alt='stars' />
                         )
@@ -147,36 +147,36 @@ function DetailsPage() {
                       <p>(50 Customer reviews)</p>
                     </div>
                     <h3 className={styles.priceLable}>
-                      Price-₹ {productData.product.price}{" "}
+                      Price-₹ {productData?.product?.price}{" "}
                     </h3>
-                    <p>{`${productData.product.color} | ${productData.product.productType} headphone`}</p>
+                    <p>{`${productData?.product?.color} | ${productData?.product?.productType} headphone`}</p>
                     <p>About This item</p>
                     <ul className={styles.aboutList}>
-                      {productData.product.details.length &&
-                        productData.product.details.map((text, key) => {
+                      {productData?.product?.details?.length &&
+                        productData?.product?.details?.map((text, key) => {
                           return <li key={key}>{text}</li>;
                         })}
                     </ul>
                     <p>
                       <span className={styles.bldFont}>Available</span> -
-                      {productData.product.avaliable
+                      {productData?.product?.avaliable
                         ? " In stock"
                         : " Out of stock!"}
                     </p>
                     <p>
                       <span className={styles.bldFont}>Brand</span> -{" "}
-                      {productData.product.brand}
+                      {productData?.product?.brand}
                     </p>
                     <button
                       onClick={() => {
-                        addtoCart(productData.product);
+                        addtoCart(productData?.product);
                       }}
                       className={styles.detailsButonsa}>
                       Add to cart
                     </button>
                     <button
                       onClick={() => {
-                        addtoCart(productData.product);
+                        addtoCart(productData?.product);
                         navigate("/View Cart");
                       }}
                       className={styles.detailsButons}>

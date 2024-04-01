@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Home from "./pages/Home/Home";
+import Home, { action as feedbackAction } from "./pages/Home/Home";
 import Login, { action as loginAction } from "./pages/account/Login";
 import Signup, { action as signupAction } from "./pages/account/Signup";
 import AccountLayout from "./pages/Layouts/AccountLayout";
@@ -40,7 +40,7 @@ function App() {
             return HomeLoader({ loginState, request, params });
           }}
           element={<HomeLayout />}>
-          <Route index element={<Home />} />
+          <Route action={feedbackAction} index element={<Home />} />
           <Route
             loader={({ request, params }) => {
               return cartLoader({ loginState, request, params });

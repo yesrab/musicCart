@@ -8,7 +8,7 @@ const schema = yup.object().shape({
   feedbackType: yup.string().required("*Required Field"),
   feedbackDetails: yup.string().required("*Required Field"),
 });
-function Feedback({ setFeedback }) {
+function Feedback({ closeFeedBack, menuRef }) {
   const submit = useSubmit();
   const {
     register,
@@ -16,15 +16,11 @@ function Feedback({ setFeedback }) {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   function handleFormSubmtion(data) {
-    console.log(data);
-    // submit(data, { method: "POST", encType: "application/json" });
+    closeFeedBack();
+    submit(data, { method: "POST", encType: "application/json" });
   }
   return (
-    <div
-      onMouseLeave={() => {
-        setFeedback(false);
-      }}
-      className={styles.FeedbackBox}>
+    <div ref={menuRef} className={styles.FeedbackBox}>
       <Form
         onSubmit={handleSubmit(handleFormSubmtion)}
         className={styles.FeedbackForm}>

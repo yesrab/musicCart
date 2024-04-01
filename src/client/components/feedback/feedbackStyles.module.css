@@ -18,15 +18,19 @@
 
 .FeedbackForm > h3 {
   text-align: start;
+  margin-top: 3px;
+  margin-bottom: 10px;
   width: 100%;
+  font-size: 1em;
 }
+
 .drop {
   border: 1px solid #919191;
   color: #919191;
   background-color: #f3f3f3;
   padding: 4%;
   border-radius: 5px;
-  border-right: 10px solid #f3f3f3;
+
   width: 90%;
 }
 .FeedbackForm > textarea {

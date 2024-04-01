@@ -39,6 +39,10 @@ app.use("/api/v1/products", productRouter);
 //invoice route import
 const invoiceRouter = require("./routes/invoice");
 app.use("/api/v1/invoices/", invoiceRouter);
+//feedback router
+const feedbackRouter = require("./routes/feedback");
+app.use("/api/v1/feedback", feedbackRouter);
+
 //globalError handler middleware
 const gloablErrorHandler = require("./middleware/globalErrorHandler");
 app.use(gloablErrorHandler);
