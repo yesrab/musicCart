@@ -18,7 +18,7 @@ export const loader = async ({ loginState, request, params }) => {
   });
   const data = fetchUtils(newInvoiceRequest);
 
-  console.log("incovice loader fired");
+  // console.log("incovice loader fired");
   return defer({ data });
 };
 
@@ -46,7 +46,10 @@ function InvoicePage() {
         <Suspense fallback={<h3>Loading...</h3>}>
           <Await resolve={data}>
             {(responce) => {
-              console.log(responce);
+              if (!responce?.myInvoices?.length) {
+                return <h3>Buy something first!</h3>;
+              }
+
               return responce?.myInvoices?.map((item) => {
                 return (
                   <InvoiceList

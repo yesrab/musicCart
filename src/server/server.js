@@ -25,10 +25,6 @@ app.get("/", (req, res) => {
     url: req.originalUrl,
   });
 });
-app.get("/image", (req, res) => {
-  const pathName = path.resolve(__dirname, "./images/400/400_1.jpg");
-  res.sendFile(pathName);
-});
 
 //account routes import
 const accoutrRouter = require("./routes/account");
@@ -42,6 +38,9 @@ app.use("/api/v1/invoices/", invoiceRouter);
 //feedback router
 const feedbackRouter = require("./routes/feedback");
 app.use("/api/v1/feedback", feedbackRouter);
+//images router
+const imagesRouter = require("./routes/images");
+app.use("/api/v1/images/", imagesRouter);
 
 //globalError handler middleware
 const gloablErrorHandler = require("./middleware/globalErrorHandler");

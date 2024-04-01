@@ -20,7 +20,7 @@ const schema = yup.object().shape({
   paymentMethod: yup.string().required("*Please select a method"),
 });
 export const loader = async ({ loginState, request, params }) => {
-  console.log("check out loader fired");
+  // console.log("check out loader fired");
   const token = loginState.token;
   if (!loginState.login) {
     return redirect("/", { replace: true });
@@ -64,7 +64,7 @@ function CheckoutPage() {
   } = useForm({ resolver: yupResolver(schema) });
 
   function handleFormSubmtion(data) {
-    console.log(data);
+    // console.log(data);
     submit(data, { method: "POST", encType: "application/json" });
   }
   const submit = useSubmit();

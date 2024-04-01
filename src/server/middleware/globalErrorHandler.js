@@ -1,27 +1,43 @@
 const mongoose = require("mongoose");
 const accountError = require("../errors/accountError");
 const cartError = require("../errors/cartError");
-const globalErrorHandler = (error, request, responce, next) => {
-  // console.log("message from global handler", error);
-  // console.log(error.)
-  if (error.code == 11000) {
-    return accountError(error, request, responce);
+const feedBackError = require("../errors/feedbackError");
+const invoiceError = require("../errors/invoiceError");
+const globalErrorHandler = (error, request, response, next) => {
+  console.log("message from global handler", error);
+  if (error.code === 11000) {
+    return accountError(error, request, response);
   }
   if (
     error instanceof mongoose.Error.ValidationError &&
     error._message === "Account validation failed"
   ) {
     console.log("Validation error");
-    return accountError(error, request, responce);
+    return accountError(error, request, response);
   }
   if (
     error instanceof mongoose.Error.ValidationError &&
-    error._message == "cart validation failed"
+    error._message === "cart validation failed"
   ) {
-    return cartError(error, request, responce);
+    return cartError(error, request, response);
   }
-  return responce.status(error.statusCode || 500).json({
-    message: "You have triggered server's global error handler",
+
+  if (
+    error instanceof mongoose.Error.ValidationError &&
+    error._message === "invoice validation failed"
+  ) {
+    return invoiceError(error, request, response);
+  }
+
+  if (
+    error instanceof mongoose.Error.ValidationError &&
+    error._message === "feedback validation failed"
+  ) {
+    return feedBackError(error, request, response);
+  }
+
+  return response.status(error.statusCode || 500).json({
+    message: "You have triggered the server's global error handler",
     error: error.message,
     status: "Error",
   });

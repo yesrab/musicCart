@@ -18,7 +18,6 @@ import { LoginContext } from "../../context/loginContext";
 import toast from "react-hot-toast";
 import backArrow from "../../assets/backArrow.svg";
 export const loader = async ({ request, params }) => {
-  console.log(params.productId);
   const id = params.productId;
   const getProductURL = `/api/v1/products/product/${id}`;
   const productRequest = new Request(getProductURL, {

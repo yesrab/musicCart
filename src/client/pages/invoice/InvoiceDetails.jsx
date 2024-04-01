@@ -13,7 +13,7 @@ export const loader = async ({ loginState, request, params }) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log("invoice details loader");
+
   const responce = fetchUtils(newInvoiceRequest);
   return defer({ responce });
 };
