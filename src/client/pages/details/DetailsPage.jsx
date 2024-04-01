@@ -33,23 +33,13 @@ function DetailsPage() {
   const { product } = useLoaderData();
   const { loginState, dispatch } = useContext(LoginContext);
   let revalidator = useRevalidator();
-
-  // console.log(productData);
   const { device, orientation } = useMediaQuery();
-  // const [currentImage, setCurretnImage] = useState("");
-  // useEffect(() => {
-  //   setCurretnImage(productData?.product.images[0].altUrl);
-  // }, []);
-
-  // const switchImage = (index) => {
-  //   setCurretnImage(productData?.product.images[index].altUrl);
-  // };
-  // console.log(device);
 
   const navigate = useNavigate();
+
   const addtoCart = async (product) => {
     if (!loginState.login) {
-      navigate("/account/login", { replace: true });
+      return navigate("/account/login", { replace: true });
     } else {
       const { _id, name, price, images, color } = product;
       const url = images[0].altUrl;
@@ -88,7 +78,7 @@ function DetailsPage() {
       <Link className={styles.backArrow} to='/'>
         <img src={backArrow} />
       </Link>
-      <br />
+      {/* <br /> */}
       <Suspense fallback={<h3>Loading...</h3>}>
         <Await resolve={product}>
           {(productData) => {
