@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   res.status(200).json({
-    message: "Hello from the server",
+    message: "Hello from the server side",
     status: "success",
     currentTime: new Date().toISOString(),
     path: req.path,

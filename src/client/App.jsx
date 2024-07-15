@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import Home, { action as feedbackAction } from "./pages/Home/Home";
 import Login, { action as loginAction } from "./pages/account/Login";
 import Signup, { action as signupAction } from "./pages/account/Signup";
@@ -15,20 +10,11 @@ import { Toaster } from "react-hot-toast";
 import { LoginContext } from "./context/loginContext";
 import { CartContext } from "./context/userCartContext";
 import { useContext } from "react";
-import DetailsPage, {
-  loader as detailsLoader,
-} from "./pages/details/DetailsPage";
-import CheckoutPage, {
-  loader as checkoutLoader,
-  action as checkoutAction,
-} from "./pages/checkOut/CheckoutPage";
+import DetailsPage, { loader as detailsLoader } from "./pages/details/DetailsPage";
+import CheckoutPage, { loader as checkoutLoader, action as checkoutAction } from "./pages/checkOut/CheckoutPage";
 import SuccessPage from "./pages/success/SuccessPage";
-import InvoicePage, {
-  loader as invoiceLoader,
-} from "./pages/invoice/InvoicePage";
-import InvoiceDetails, {
-  loader as invoiceDetailsLoader,
-} from "./pages/invoice/InvoiceDetails";
+import InvoicePage, { loader as invoiceLoader } from "./pages/invoice/InvoicePage";
+import InvoiceDetails, { loader as invoiceDetailsLoader } from "./pages/invoice/InvoiceDetails";
 function App() {
   const { loginState, dispatch } = useContext(LoginContext);
   const { cartState, dispatch: cartDispatch } = useContext(CartContext);
@@ -58,11 +44,7 @@ function App() {
             path='/Checkout'
             element={<CheckoutPage />}
           />
-          <Route
-            path='details/:productId'
-            loader={detailsLoader}
-            element={<DetailsPage />}
-          />
+          <Route path='details/:productId' loader={detailsLoader} element={<DetailsPage />} />
           <Route path='success' element={<SuccessPage />} />
           <Route
             loader={({ request, params }) => {
@@ -121,4 +103,3 @@ function App() {
 }
 
 export default App;
-
